@@ -1,76 +1,54 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
-// Écrans d'authentification
-import LoginScreen from '../screens/Authentification/LoginScreen';
-import RegisterScreen from '../screens/Authentification/RegisterScreen';
-import ForgotPasswordScreen from '../screens/Authentification/ForgotPasswordScreen';
-
-// Écrans principaux
-import AccueilScreen from '../screens/Accueil/AccueilScreen';
-import CalendarScreen from '../screens/Documents/CalendarScreen';
-import StatistiquesScreen from '../screens/AnimatriceReferente/StatistiquesScreen';
-import ProfilScreen from '../screens/Parametres/GestionCompteScreen';
+import { useSelector } from 'react-redux';
+import AuthNavigator from './AuthNavigator';
+import EnfantStack from './stacks/EnfantStack';
+import EnseignantStack from './stacks/EnseignantStack';
+import ParentStack from './stacks/ParentStack';
+import MoniteurFincStack from './stacks/MoniteurFincStack';
+import AnimatriceReferenteStack from './stacks/AnimatriceReferenteStack';
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
-
-const AuthStack = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="Login" component={LoginScreen} />
-    <Stack.Screen name="Register" component={RegisterScreen} />
-    <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-  </Stack.Navigator>
-);
-
-const MainTabs = () => (
-  <Tab.Navigator
-    screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, color, size }) => {
-        let iconName;
-
-        switch (route.name) {
-          case 'Accueil':
-            iconName = 'home';
-            break;
-          case 'Calendar':
-            iconName = 'event';
-            break;
-          case 'Statistiques':
-            iconName = 'bar-chart';
-            break;
-          case 'Profil':
-            iconName = 'person';
-            break;
-          default:
-            iconName = 'help';
-        }
-
-        return <Icon name={iconName} size={size} color={color} />;
-      },
-    })}
-    tabBarOptions={{
-      activeTintColor: '#2196F3',
-      inactiveTintColor: 'gray',
-    }}
-  >
-    <Tab.Screen name="Accueil" component={AccueilScreen} />
-    <Tab.Screen name="Calendar" component={CalendarScreen} />
-    <Tab.Screen name="Statistiques" component={StatistiquesScreen} />
-    <Tab.Screen name="Profil" component={ProfilScreen} />
-  </Tab.Navigator>
-);
 
 const AppNavigator = () => {
-  // Ici vous pouvez ajouter la logique pour vérifier si l'utilisateur est connecté
-  const isAuthenticated = false; // À remplacer par votre logique d'authentification
+  const { currentProfile } = useSelector((state) => state.profile);
+
+  const getInitialRouteName = () => {
+    if (!currentProfile) return 'Auth';
+    
+    switch (currentProfile.role) {
+      case 'enfant':
+        return 'EnfantStack';
+      case 'enseignant':
+        return 'EnseignantStack';
+      case 'parent':
+        return 'ParentStack';
+      case 'moniteurFinc':
+        return 'MoniteurFincStack';
+      case 'animatriceReferente':
+        return 'AnimatriceReferenteStack';
+      default:
+        return 'Auth';
+    }
+  };
 
   return (
     <NavigationContainer>
-      {isAuthenticated ? <MainTabs /> : <AuthStack />}
+      <Stack.Navigator
+        initialRouteName={getInitialRouteName()}
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="Auth" component={AuthNavigator} />
+        <Stack.Screen name="EnfantStack" component={EnfantStack} />
+        <Stack.Screen name="EnseignantStack" component={EnseignantStack} />
+        <Stack.Screen name="ParentStack" component={ParentStack} />
+        <Stack.Screen name="MoniteurFincStack" component={MoniteurFincStack} />
+        <Stack.Screen
+          name="AnimatriceReferenteStack"
+          component={AnimatriceReferenteStack}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

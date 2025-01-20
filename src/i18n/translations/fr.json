@@ -1,0 +1,80 @@
+{
+  "auth": {
+    "welcome": "Bienvenue",
+    "loginSubtitle": "Connectez-vous pour continuer",
+    "email": "Email",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "login": "Se connecter",
+    "noAccount": "Vous n'avez pas de compte ?",
+    "register": "S'inscrire",
+    "createAccount": "Créer un compte",
+    "registerSubtitle": "Inscrivez-vous pour commencer",
+    "name": "Nom",
+    "confirmPassword": "Confirmer le mot de passe",
+    "haveAccount": "Vous avez déjà un compte ?",
+    "error": "Erreur",
+    "fillAllFields": "Veuillez remplir tous les champs",
+    "passwordsDoNotMatch": "Les mots de passe ne correspondent pas"
+  },
+  "home": {
+    "welcome": "Bonjour",
+    "questionnaires": "Questionnaires",
+    "documents": "Documents",
+    "calendar": "Calendrier",
+    "statistics": "Statistiques",
+    "settings": "Paramètres"
+  },
+  "questionnaire": {
+    "title": "Questionnaires",
+    "start": "Commencer",
+    "submit": "Soumettre",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "complete": "Terminé",
+    "error": "Erreur",
+    "success": "Succès",
+    "submissionSuccess": "Questionnaire soumis avec succès",
+    "submissionError": "Erreur lors de la soumission du questionnaire"
+  },
+  "documents": {
+    "title": "Documents",
+    "upload": "Télécharger",
+    "download": "Télécharger",
+    "delete": "Supprimer",
+    "share": "Partager",
+    "noDocuments": "Aucun document"
+  },
+  "calendar": {
+    "title": "Calendrier",
+    "today": "Aujourd'hui",
+    "addEvent": "Ajouter un événement",
+    "editEvent": "Modifier l'événement",
+    "deleteEvent": "Supprimer l'événement"
+  },
+  "statistics": {
+    "title": "Statistiques",
+    "overview": "Vue d'ensemble",
+    "details": "Détails",
+    "noData": "Aucune donnée disponible"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "profile": "Profil",
+    "notifications": "Notifications",
+    "language": "Langue",
+    "theme": "Thème",
+    "about": "À propos",
+    "logout": "Déconnexion"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "close": "Fermer"
+  }
+}

@@ -1,37 +1,26 @@
-# Dependencies
-node_modules/
-.pnp/
-.pnp.js
-
-# Testing
-coverage/
-
-# Production
-build/
-dist/
-.next/
-out/
-
-# Environment variables
+# Environment Variables
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# Debug logs
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Production
+/build
+/dist
+
+# Debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# System files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
 
 # IDE
 .idea/
@@ -39,13 +28,47 @@ Thumbs.db
 *.swp
 *.swo
 
-# Mobile specific
-*.ipa
-*.apk
-*.aab
-*.keystore
-*.jks
+# OS
+.DS_Store
 
 # Temporary files
 *.log
 *.tmp
+*.temp
+
+# Firebase
+.firebase/
+firebase-debug.log*
+firebase-debug.*.log*
+
+# iOS
+ios/Pods/
+ios/build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+# Android
+android/app/build/
+android/build/
+android/.gradle
+android/.idea
+android/local.properties
+*.iml
+
+# Expo
+.expo/
+web-build/
