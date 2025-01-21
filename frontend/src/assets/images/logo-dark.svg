@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fond du logo -->
+  <rect width="200" height="60" rx="12" fill="#1976D2" />
+  
+  <!-- Cercle décoratif -->
+  <circle cx="40" cy="30" r="20" fill="#FFB300" />
+  
+  <!-- Étoile stylisée -->
+  <path d="M40 15 L44 25 L54 25 L46 32 L49 42 L40 36 L31 42 L34 32 L26 25 L36 25 Z" fill="#FFFFFF" />
+  
+  <!-- Texte "CIVINO" -->
+  <text x="70" y="38" font-family="PlusJakartaSans-Bold" font-size="24" fill="#FFFFFF">
+    CIVINO
+  </text>
+  
+  <!-- Ligne décorative -->
+  <path d="M70 42 L170 42" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+</svg>

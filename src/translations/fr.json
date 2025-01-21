@@ -1,0 +1,80 @@
+{
+  "reports": {
+    "types": {
+      "daily": "Quotidien",
+      "weekly": "Hebdomadaire",
+      "monthly": "Mensuel"
+    },
+    "preview": {
+      "title": "Aperçu du Rapport",
+      "date": "Date",
+      "type": "Type de rapport",
+      "context": "Contexte"
+    },
+    "download": "Télécharger"
+  },
+  "contexts": {
+    "school": "École",
+    "community": "Maison de quartier",
+    "home": "Maison"
+  },
+  "evaluation": {
+    "periods": {
+      "morning": "Matin",
+      "afternoon": "Après-midi"
+    },
+    "emotions": {
+      "very_happy": "Très content",
+      "happy": "Content",
+      "neutral": "Neutre",
+      "sad": "Triste",
+      "very_sad": "Très triste"
+    },
+    "save": "Enregistrer l'évaluation",
+    "success": {
+      "title": "Succès",
+      "message": "L'évaluation a été enregistrée avec succès"
+    },
+    "error": {
+      "title": "Erreur",
+      "message": "Une erreur est survenue lors de l'enregistrement"
+    }
+  },
+  "contracts": {
+    "title": "Titre",
+    "titlePlaceholder": "Entrez le titre du contrat",
+    "description": "Description",
+    "descriptionPlaceholder": "Décrivez l'objectif du contrat",
+    "context": "Contexte",
+    "period": "Période",
+    "to": "au",
+    "dailyValidation": "Validation quotidienne requise",
+    "goals": "Objectifs",
+    "goalPlaceholder": "Entrez un objectif",
+    "addGoal": "Ajouter un objectif",
+    "save": "Enregistrer le contrat",
+    "create": "Nouveau contrat",
+    "edit": "Modifier le contrat",
+    "empty": "Aucun contrat pour le moment",
+    "delete": {
+      "title": "Supprimer le contrat",
+      "message": "Êtes-vous sûr de vouloir supprimer ce contrat ?"
+    },
+    "error": {
+      "loadTitle": "Erreur de chargement",
+      "loadMessage": "Impossible de charger les contrats",
+      "saveTitle": "Erreur d'enregistrement",
+      "saveMessage": "Impossible d'enregistrer le contrat",
+      "deleteTitle": "Erreur de suppression",
+      "deleteMessage": "Impossible de supprimer le contrat"
+    }
+  },
+  "common": {
+    "close": "Fermer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "loading": "Chargement...",
+    "ok": "OK"
+  }
+}

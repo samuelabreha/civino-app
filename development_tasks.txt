@@ -1,0 +1,133 @@
+CIVINO APP - Development Tasks Distribution
+
+**Front-end Development (React Native)**
+1. User Interface
+   - Responsive screen layouts
+   - Animations and transitions
+   - Consistent theming and styling
+   - Multi-language support (FR, EN, DE, IT)
+
+2. Navigation
+   - Role-based navigation system (Child, Teacher, Monitor, etc.)
+   - Screen navigation
+   - History management
+   - Deep linking
+
+3. Forms and Validation
+   - Profile creation
+   - Dynamic questionnaires
+   - User input validation
+   - Error messages and feedback
+
+4. Data Visualization
+   - Progress charts
+   - Interactive calendars
+   - Dashboards
+   - Statistics display
+
+5. Media Management
+   - Document upload
+   - File preview
+   - Image handling
+   - PDF export
+
+6. Application State
+   - Local state management
+   - Caching
+   - Session management
+   - Offline mode
+
+**Back-end Development (Node.js/Express)**
+1. REST API
+   - Endpoints for each feature
+   - Request validation
+   - Error handling
+   - API documentation
+
+2. Authentication & Security
+   - Login/logout system
+   - JWT token management
+   - Role-based access control
+   - Sensitive data encryption
+
+3. Database
+   - Data models
+   - Entity relationships
+   - Migrations
+   - Query optimization
+
+4. File Management
+   - Secure storage
+   - Image compression
+   - PDF generation
+   - Automatic backup
+
+5. Business Logic
+   - Statistics calculation
+   - Progress algorithms
+   - Behavior rules
+   - Automatic notifications
+
+6. Integrations
+   - Email service
+   - Push notifications
+   - Cloud storage
+   - External services
+
+7. Performance & Scalability
+   - Caching
+   - Load balancing
+   - Query optimization
+   - Monitoring
+
+8. Data Security
+   - Regular backup
+   - Encryption
+   - GDPR compliance
+   - Security logs
+
+**Shared Responsibilities**
+1. Testing
+   - Unit tests
+   - Integration tests
+   - End-to-end tests
+   - Performance tests
+
+2. Documentation
+   - Technical documentation
+   - User documentation
+   - API documentation
+   - Deployment guides
+
+3. Deployment
+   - Environment configuration
+   - CI/CD
+   - Monitoring
+   - Version management
+
+4. Maintenance
+   - Bug fixes
+   - Security updates
+   - Optimizations
+   - Technical support
+
+**Technology Stack**
+1. Front-end
+   - React Native
+   - React Navigation
+   - Redux/Context API
+   - UI Libraries (Material-UI, etc.)
+
+2. Back-end
+   - Node.js
+   - Express.js
+   - MongoDB/PostgreSQL
+   - Redis for caching
+
+3. Development Tools
+   - Git for version control
+   - Jest for testing
+   - Docker for containerization
+   - Jenkins/GitHub Actions for CI/CD
+
+This distribution ensures efficient collaboration between front-end and back-end developers while maintaining overall project coherence and quality.
