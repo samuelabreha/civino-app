@@ -6,6 +6,9 @@ import { theme } from '../theme';
 import { ROUTES, SCREEN_OPTIONS } from '../constants/routes';
 import { LAYOUT } from '../constants/layout';
 
+// Navigation configuration for CIVINO app
+// Updated January 2025
+
 // Screens
 import HomeScreen from '../screens/Home';
 import ChildScreen from '../screens/Child';
