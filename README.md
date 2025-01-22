@@ -1,4 +1,6 @@
-# Projet CIVINO
+# CIVINO - Application de Suivi Comportemental
+
+## 🌟 Version 2.0.0 - Janvier 2025
 
 ## Description
 Application éducative pour la gestion et le suivi des enfants dans différents contextes éducatifs (école, maison de quartier, etc.).
@@ -28,6 +30,13 @@ Application éducative pour la gestion et le suivi des enfants dans différents 
 - Transitions animées
 - Support multilingue
 - Mode responsive (mobile, tablette, desktop)
+
+### Nouvelles Fonctionnalités
+- Interface utilisateur complètement repensée
+- Système d'évaluation par images optimisé
+- Gestion avancée des contrats comportementaux
+- Rapports de progression détaillés
+- Support multilingue (FR/EN)
 
 ## Structure du Projet
 
@@ -66,9 +75,10 @@ Application éducative pour la gestion et le suivi des enfants dans différents 
 ```
 
 ## Prérequis
-- Node.js >= 14.0.0
+- Node.js >= 16.0.0
 - React Native >= 0.70.0
 - npm >= 6.0.0
+- iOS 13+ / Android 9+
 
 ## Installation
 
@@ -89,6 +99,18 @@ Application éducative pour la gestion et le suivi des enfants dans différents 
    cd backend
    npm install
    ```
+
+## Installation Rapide
+```bash
+# Installation des dépendances
+npm install
+
+# Lancement en développement
+npm run dev
+
+# Build production
+npm run build
+```
 
 ## Configuration
 1. Copier le fichier `.env.example` en `.env`
@@ -139,17 +161,20 @@ npm test
 - Documentation API : `docs/api/README.md`
 - Architecture : `docs/architecture/README.md`
 
+## Contributeurs
+- Équipe de développement CIVINO
+- Éducateurs spécialisés
+- Designers UX/UI
+
+## Support
+Pour toute question : support@civino.app
+
+## License
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+
 ## Contribution
 1. Fork le projet
 2. Créer une branche pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
 3. Commit vos changements (`git commit -m 'Add some AmazingFeature'`)
 4. Push vers la branche (`git push origin feature/AmazingFeature`)
 5. Créer une Pull Request
-
-## Support
-Pour toute question ou problème :
-- Ouvrir une issue sur GitHub
-- Contacter l'équipe de développement
-
-## License
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
