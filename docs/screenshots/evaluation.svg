@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="390" height="844" fill="#FFFFFF"/>
+    
+    <!-- Status Bar -->
+    <rect width="390" height="44" fill="#F8F8F8"/>
+    <text x="20" y="27" font-family="SF Pro Text" font-size="14" fill="#000000">9:41</text>
+    
+    <!-- Header -->
+    <rect y="44" width="390" height="60" fill="#2196F3"/>
+    <text x="20" y="82" font-family="SF Pro Display" font-size="24" fill="#FFFFFF">Évaluation</text>
+    
+    <!-- Emotion Selection -->
+    <text x="20" y="140" font-family="SF Pro Text" font-size="18" fill="#333333">Comment te sens-tu ?</text>
+    
+    <!-- Emotion Icons -->
+    <circle cx="58" cy="200" r="32" fill="#4CAF50"/>
+    <circle cx="138" cy="200" r="32" fill="#8BC34A"/>
+    <circle cx="218" cy="200" r="32" fill="#FFC107"/>
+    <circle cx="298" cy="200" r="32" fill="#FF9800"/>
+    <circle cx="378" cy="200" r="32" fill="#F44336"/>
+    
+    <!-- Context Selection -->
+    <text x="20" y="280" font-family="SF Pro Text" font-size="18" fill="#333333">Où es-tu ?</text>
+    
+    <rect x="20" y="300" width="110" height="40" rx="20" fill="#2196F3"/>
+    <text x="45" y="325" font-family="SF Pro Text" font-size="14" fill="#FFFFFF">École</text>
+    
+    <rect x="140" y="300" width="110" height="40" rx="20" fill="#E0E0E0"/>
+    <text x="165" y="325" font-family="SF Pro Text" font-size="14" fill="#333333">Maison</text>
+    
+    <rect x="260" y="300" width="110" height="40" rx="20" fill="#E0E0E0"/>
+    <text x="275" y="325" font-family="SF Pro Text" font-size="14" fill="#333333">Quartier</text>
+    
+    <!-- Comments -->
+    <text x="20" y="380" font-family="SF Pro Text" font-size="18" fill="#333333">Commentaires</text>
+    <rect x="20" y="400" width="350" height="120" rx="8" fill="#F5F5F5"/>
+    
+    <!-- Save Button -->
+    <rect x="20" y="740" width="350" height="50" rx="25" fill="#4CAF50"/>
+    <text x="135" y="772" font-family="SF Pro Text" font-size="18" fill="#FFFFFF">Enregistrer</text>
+</svg>

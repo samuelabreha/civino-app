@@ -19,6 +19,9 @@ import {
   where,
   orderBy,
   limit,
+  setDoc,
+  FieldValue,
+  serverTimestamp,
 } from 'firebase/firestore';
 import {
   getStorage,
@@ -136,6 +139,115 @@ class FirebaseService {
 
   async updateContract(id, data) {
     await updateDoc(doc(db, 'contracts', id), data);
+  }
+
+  // Méthodes de gestion des contrats
+  async createContract(contractData) {
+    try {
+      const userId = auth.currentUser?.uid;
+      if (!userId) throw new Error('User not authenticated');
+
+      const contractRef = doc(collection(db, 'users', userId, 'contracts'));
+      await setDoc(contractRef, {
+        ...contractData,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      });
+
+      return contractRef.id;
+    } catch (error) {
+      console.error('Error creating contract:', error);
+      throw error;
+    }
+  }
+
+  async updateContract(contractId, contractData) {
+    try {
+      const userId = auth.currentUser?.uid;
+      if (!userId) throw new Error('User not authenticated');
+
+      const contractRef = doc(db, 'users', userId, 'contracts', contractId);
+      await setDoc(contractRef, {
+        ...contractData,
+        updatedAt: serverTimestamp(),
+      }, { merge: true });
+
+      return true;
+    } catch (error) {
+      console.error('Error updating contract:', error);
+      throw error;
+    }
+  }
+
+  async deleteContract(contractId) {
+    try {
+      const userId = auth.currentUser?.uid;
+      if (!userId) throw new Error('User not authenticated');
+
+      const contractRef = doc(db, 'users', userId, 'contracts', contractId);
+      await deleteDoc(contractRef);
+
+      return true;
+    } catch (error) {
+      console.error('Error deleting contract:', error);
+      throw error;
+    }
+  }
+
+  async getContracts(context = null) {
+    try {
+      const userId = auth.currentUser?.uid;
+      if (!userId) throw new Error('User not authenticated');
+
+      let contractsQuery = query(
+        collection(db, 'users', userId, 'contracts'),
+        orderBy('createdAt', 'desc')
+      );
+
+      if (context) {
+        contractsQuery = query(
+          contractsQuery,
+          where('context', '==', context)
+        );
+      }
+
+      const snapshot = await getDocs(contractsQuery);
+      return snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+    } catch (error) {
+      console.error('Error fetching contracts:', error);
+      throw error;
+    }
+  }
+
+  async validateContractGoal(contractId, goalId, completed) {
+    try {
+      const userId = auth.currentUser?.uid;
+      if (!userId) throw new Error('User not authenticated');
+
+      const contractRef = doc(db, 'users', userId, 'contracts', contractId);
+      const contract = await getDoc(contractRef);
+      
+      if (!contract.exists()) {
+        throw new Error('Contract not found');
+      }
+
+      const goals = contract.data().goals.map(goal =>
+        goal.id === goalId ? { ...goal, completed } : goal
+      );
+
+      await updateDoc(contractRef, {
+        goals,
+        updatedAt: serverTimestamp(),
+      });
+
+      return true;
+    } catch (error) {
+      console.error('Error validating contract goal:', error);
+      throw error;
+    }
   }
 
   // Calendar Methods
@@ -315,6 +427,92 @@ class FirebaseService {
     });
 
     return stats;
+  }
+
+  async saveEvaluation(evaluationData) {
+    try {
+      const userId = auth.currentUser?.uid;
+      if (!userId) throw new Error('User not authenticated');
+
+      const { context, date, emotions } = evaluationData;
+      
+      // Créer une référence à la collection des évaluations
+      const evaluationRef = doc(db, 'users', userId, 'evaluations', date);
+
+      // Sauvegarder l'évaluation
+      await setDoc(evaluationRef, {
+        context,
+        date,
+        emotions,
+        createdAt: FieldValue.serverTimestamp(),
+      });
+
+      // Mettre à jour les statistiques
+      await this.updateStatistics(userId, evaluationData);
+
+      return true;
+    } catch (error) {
+      console.error('Error saving evaluation:', error);
+      throw error;
+    }
+  }
+
+  async updateStatistics(userId, evaluationData) {
+    try {
+      const { context, date, emotions } = evaluationData;
+      const statsRef = doc(db, 'users', userId, 'statistics', context);
+
+      // Calculer les moyennes
+      const morningValue = emotions.morning?.value || 0;
+      const afternoonValue = emotions.afternoon?.value || 0;
+      const dailyAverage = (morningValue + afternoonValue) / 2;
+
+      // Mettre à jour les statistiques
+      await setDoc(statsRef, {
+        [`${date.split('T')[0]}`]: {
+          morning: morningValue,
+          afternoon: afternoonValue,
+          average: dailyAverage,
+        },
+      }, { merge: true });
+
+    } catch (error) {
+      console.error('Error updating statistics:', error);
+      throw error;
+    }
+  }
+
+  async getEvaluations(userId, context, startDate, endDate) {
+    try {
+      const evaluationsRef = query(
+        collection(db, 'users', userId, 'evaluations'),
+        where('context', '==', context),
+        where('date', '>=', startDate),
+        where('date', '<=', endDate),
+        orderBy('date', 'desc')
+      );
+
+      const snapshot = await getDocs(evaluationsRef);
+      return snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+    } catch (error) {
+      console.error('Error fetching evaluations:', error);
+      throw error;
+    }
+  }
+
+  async getStatistics(userId, context, period) {
+    try {
+      const statsRef = doc(db, 'users', userId, 'statistics', context);
+
+      const doc = await getDoc(statsRef);
+      return doc.data() || {};
+    } catch (error) {
+      console.error('Error fetching statistics:', error);
+      throw error;
+    }
   }
 }
 

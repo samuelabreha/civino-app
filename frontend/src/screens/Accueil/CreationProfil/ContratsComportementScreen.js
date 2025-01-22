@@ -1,17 +1,61 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import { colors, typography } from '../../../styles/globalStyles';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { Button, Typography, Card } from '../../../components/common';
 import Header from '../../../components/Header';
+import { theme } from '../../../theme';
+import Icon from '../../../components/common/Icon';
+
+const ContratCard = ({ title, description, selected, onPress }) => (
+  <Card
+    style={[
+      styles.contratCard,
+      selected && styles.selectedCard
+    ]}
+    onPress={onPress}
+  >
+    <View style={styles.contratHeader}>
+      <Typography variant="h3" style={styles.contratTitle}>
+        {title}
+      </Typography>
+      {selected && (
+        <Icon 
+          name="check-circle" 
+          size={24} 
+          color={theme.colors.primary.main}
+        />
+      )}
+    </View>
+    <Typography variant="body2" style={styles.contratDescription}>
+      {description}
+    </Typography>
+  </Card>
+);
 
 const ContratsComportementScreen = ({ navigation, route }) => {
   const { statut, nom, prenom } = route.params;
   const [selectedContrats, setSelectedContrats] = useState([]);
 
   const contrats = [
-    { id: 1, title: 'Respect des règles', description: 'Suivre les règles établies' },
-    { id: 2, title: 'Communication', description: 'Communiquer de manière respectueuse' },
-    { id: 3, title: 'Participation', description: 'Participer activement aux activités' },
-    { id: 4, title: 'Collaboration', description: 'Travailler en équipe' },
+    { 
+      id: 1, 
+      title: 'Respect des règles', 
+      description: 'Je m'engage à suivre les règles établies et à respecter les consignes données.'
+    },
+    { 
+      id: 2, 
+      title: 'Communication positive', 
+      description: 'Je m'engage à communiquer de manière respectueuse avec les autres.'
+    },
+    { 
+      id: 3, 
+      title: 'Participation active', 
+      description: 'Je m'engage à participer activement aux activités proposées.'
+    },
+    { 
+      id: 4, 
+      title: 'Collaboration', 
+      description: 'Je m'engage à travailler en équipe et à aider les autres.'
+    },
   ];
 
   const toggleContrat = (id) => {
@@ -33,36 +77,36 @@ const ContratsComportementScreen = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <Header title="Contrats de comportement" />
+      <Header 
+        title="Contrats de comportement"
+        subtitle="Sélectionnez les contrats que vous souhaitez suivre"
+      />
+      
       <ScrollView style={styles.content}>
-        <Text style={styles.description}>
-          Sélectionnez les contrats de comportement que vous souhaitez suivre :
-        </Text>
+        <Typography variant="body1" style={styles.description}>
+          Ces contrats vous aideront à suivre et améliorer votre comportement dans différents contextes.
+        </Typography>
         
         {contrats.map(contrat => (
-          <TouchableOpacity
+          <ContratCard
             key={contrat.id}
-            style={[
-              styles.contratCard,
-              selectedContrats.includes(contrat.id) && styles.selectedCard
-            ]}
+            title={contrat.title}
+            description={contrat.description}
+            selected={selectedContrats.includes(contrat.id)}
             onPress={() => toggleContrat(contrat.id)}
-          >
-            <Text style={styles.contratTitle}>{contrat.title}</Text>
-            <Text style={styles.contratDescription}>{contrat.description}</Text>
-          </TouchableOpacity>
+          />
         ))}
 
-        <TouchableOpacity 
-          style={[
-            styles.submitButton,
-            selectedContrats.length === 0 && styles.disabledButton
-          ]}
-          onPress={handleSubmit}
+        <Button
+          variant="primary"
+          size="large"
+          fullWidth
+          style={styles.submitButton}
           disabled={selectedContrats.length === 0}
+          onPress={handleSubmit}
         >
-          <Text style={styles.submitButtonText}>Continuer</Text>
-        </TouchableOpacity>
+          Continuer
+        </Button>
       </ScrollView>
     </View>
   );
@@ -71,49 +115,39 @@ const ContratsComportementScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: theme.colors.background.default,
   },
   content: {
-    padding: 16,
+    flex: 1,
+    padding: theme.spacing.lg,
   },
   description: {
-    ...typography.body,
-    marginBottom: 20,
+    marginBottom: theme.spacing.xl,
+    color: theme.colors.text.secondary,
   },
   contratCard: {
-    backgroundColor: colors.background,
-    borderRadius: 8,
-    padding: 16,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: colors.lightGray,
+    marginBottom: theme.spacing.md,
   },
   selectedCard: {
-    borderColor: colors.primary,
-    backgroundColor: colors.lightGray,
+    borderColor: theme.colors.primary.main,
+    backgroundColor: theme.colors.background.light,
+  },
+  contratHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: theme.spacing.sm,
   },
   contratTitle: {
-    ...typography.h2,
-    marginBottom: 8,
+    flex: 1,
+    marginRight: theme.spacing.sm,
   },
   contratDescription: {
-    ...typography.body,
-    color: '#666',
+    color: theme.colors.text.secondary,
   },
   submitButton: {
-    backgroundColor: colors.primary,
-    padding: 16,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 20,
-    marginBottom: 30,
-  },
-  disabledButton: {
-    backgroundColor: colors.lightGray,
-  },
-  submitButtonText: {
-    ...typography.body,
-    color: colors.background,
+    marginTop: theme.spacing.xl,
+    marginBottom: theme.spacing.xl,
   },
 });
 

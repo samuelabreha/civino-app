@@ -3,6 +3,32 @@
 ## Description
 Application éducative pour la gestion et le suivi des enfants dans différents contextes éducatifs (école, maison de quartier, etc.).
 
+## Fonctionnalités Principales
+
+### 1. Gestion des Profils
+- Création et gestion de profils (Enfant, Enseignant-e, Moniteur FINC, Parents, Administrateur)
+- Interface adaptée selon le type de profil
+- Contrats de comportement personnalisés
+
+### 2. Évaluation et Suivi
+- Questionnaires interactifs
+- Évaluation par images
+- Rapports de progression (quotidien, hebdomadaire, mensuel)
+- Statistiques comportementales
+
+### 3. Documentation
+- Gestion des documents avec calendrier
+- Rapports d'observation
+- Contrats de comportement et PEI
+- Upload et téléchargement de documents
+
+### 4. Interface Utilisateur
+- Design moderne et intuitif
+- Navigation fluide
+- Transitions animées
+- Support multilingue
+- Mode responsive (mobile, tablette, desktop)
+
 ## Structure du Projet
 
 ```
@@ -21,10 +47,13 @@ Application éducative pour la gestion et le suivi des enfants dans différents 
 │   ├── ios/               # Configuration iOS
 │   └── src/               # Code source
 │       ├── components/    # Composants réutilisables
+│       │   ├── common/    # Composants communs (Button, Card, etc.)
+│       │   ├── evaluation/# Composants d'évaluation
+│       │   └── documents/ # Composants de gestion documentaire
 │       ├── screens/       # Écrans de l'application
 │       ├── navigation/    # Configuration de la navigation
-│       ├── assets/        # Ressources (images, fonts)
-│       └── styles/        # Styles globaux
+│       ├── theme/         # Thème et styles globaux
+│       └── assets/        # Ressources (images, fonts)
 │
 ├── docs/                   # Documentation
 │   ├── api/               # Documentation API
@@ -36,9 +65,19 @@ Application éducative pour la gestion et le suivi des enfants dans différents 
     └── development/       # Outils de développement
 ```
 
+## Prérequis
+- Node.js >= 14.0.0
+- React Native >= 0.70.0
+- npm >= 6.0.0
+
 ## Installation
 
-1. Cloner le repository
+1. Cloner le repository :
+   ```bash
+   git clone https://github.com/votre-repo/civino.git
+   cd civino
+   ```
+
 2. Installer les dépendances frontend :
    ```bash
    cd frontend
@@ -50,6 +89,11 @@ Application éducative pour la gestion et le suivi des enfants dans différents 
    cd backend
    npm install
    ```
+
+## Configuration
+1. Copier le fichier `.env.example` en `.env`
+2. Configurer les variables d'environnement
+3. Configurer la base de données
 
 ## Démarrage
 
@@ -65,15 +109,47 @@ cd backend
 npm start
 ```
 
+## Tests
+```bash
+# Tests frontend
+cd frontend
+npm test
+
+# Tests backend
+cd backend
+npm test
+```
+
+## Déploiement
+1. Construire l'application :
+   ```bash
+   cd frontend
+   npm run build
+   ```
+
+2. Déployer le backend :
+   ```bash
+   cd backend
+   npm run deploy
+   ```
+
 ## Documentation
-Consultez le dossier `docs/` pour la documentation complète du projet.
+- Documentation complète dans le dossier `docs/`
+- Guide d'utilisation : `docs/guides/user-guide.md`
+- Documentation API : `docs/api/README.md`
+- Architecture : `docs/architecture/README.md`
 
 ## Contribution
 1. Fork le projet
-2. Créer une branche pour votre fonctionnalité
-3. Commit vos changements
-4. Push vers la branche
+2. Créer une branche pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
+3. Commit vos changements (`git commit -m 'Add some AmazingFeature'`)
+4. Push vers la branche (`git push origin feature/AmazingFeature`)
 5. Créer une Pull Request
 
+## Support
+Pour toute question ou problème :
+- Ouvrir une issue sur GitHub
+- Contacter l'équipe de développement
+
 ## License
-Ce projet est sous licence MIT.
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.

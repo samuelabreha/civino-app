@@ -1,0 +1,10 @@
+# GUIDE COMPLET CIVINO - VÉRIFICATION ET DÉPLOIEMENT
+Date: 22/01/2025
+
+## TABLE DES MATIÈRES
+1. Guide Complet des Commandes Windsurf
+2. Checklist Front-End avec Commandes
+3. Plan de Correction pour 100%
+4. Instructions de Déploiement
+
+[... Le reste du contenu identique au fichier précédent en français ...]

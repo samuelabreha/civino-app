@@ -22,10 +22,10 @@ export const colors = {
   
   // Couleurs de texte
   text: {
-    primary: '#333333',
-    secondary: '#666666',
-    disabled: '#9E9E9E',
-    hint: '#BDBDBD',
+    primary: '#1A1A1A',
+    secondary: '#757575',
+    disabled: '#BDBDBD',
+    hint: '#9E9E9E',
   },
   
   // Couleurs de fond
@@ -33,6 +33,7 @@ export const colors = {
     default: '#FFFFFF',
     paper: '#F5F5F5',
     grey: '#FAFAFA',
+    light: '#F8F9FA',
   },
   
   // Couleurs d'état
@@ -50,22 +51,16 @@ export const colors = {
     dark: '#9E9E9E',
   },
   
-  // Couleurs d'action
-  action: {
-    active: 'rgba(0, 0, 0, 0.54)',
-    hover: 'rgba(0, 0, 0, 0.04)',
-    selected: 'rgba(0, 0, 0, 0.08)',
-    disabled: 'rgba(0, 0, 0, 0.26)',
-    disabledBackground: 'rgba(0, 0, 0, 0.12)',
-  },
-  
-  // Couleurs des rôles
-  roles: {
-    enfant: '#4CAF50',
-    enseignant: '#2196F3',
-    parent: '#FF9800',
-    moniteurFinc: '#9C27B0',
-    animatriceReferente: '#E91E63',
-    admin: '#607D8B',
+  // Couleurs spécifiques aux composants
+  components: {
+    card: {
+      shadow: 'rgba(0, 0, 0, 0.1)',
+      border: '#E8E8E8',
+    },
+    input: {
+      border: '#E0E0E0',
+      focus: '#2196F3',
+      error: '#F44336',
+    },
   },
 };

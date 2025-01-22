@@ -1,12 +1,18 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { Button, Typography } from '../../components/common';
 import Header from '../../components/Header';
-import { colors, typography } from '../../styles/globalStyles';
+import { theme } from '../../theme';
 
 const ProfilCard = ({ title, onPress }) => (
-  <TouchableOpacity style={styles.card} onPress={onPress}>
-    <Text style={styles.cardTitle}>{title}</Text>
-  </TouchableOpacity>
+  <Button
+    variant="primary"
+    size="large"
+    style={styles.card}
+    onPress={onPress}
+  >
+    {title}
+  </Button>
 );
 
 const AccueilScreen = ({ navigation }) => {
@@ -23,7 +29,9 @@ const AccueilScreen = ({ navigation }) => {
       <Header title="Bienvenue sur Civino" showBack={false} />
       
       <ScrollView style={styles.content}>
-        <Text style={styles.sectionTitle}>Sélectionnez votre profil</Text>
+        <Typography variant="h1" style={styles.sectionTitle}>
+          Sélectionnez votre profil
+        </Typography>
         
         <View style={styles.cardsContainer}>
           {profiles.map((profile, index) => (
@@ -35,12 +43,15 @@ const AccueilScreen = ({ navigation }) => {
           ))}
         </View>
 
-        <TouchableOpacity 
+        <Button 
+          variant="secondary"
+          size="large"
+          fullWidth
           style={styles.createButton}
           onPress={() => navigation.navigate('CreationProfil')}
         >
-          <Text style={styles.createButtonText}>Créer un nouveau profil</Text>
-        </TouchableOpacity>
+          Créer un nouveau profil
+        </Button>
       </ScrollView>
     </View>
   );
@@ -49,51 +60,27 @@ const AccueilScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: theme.colors.background.default,
   },
   content: {
     flex: 1,
-    padding: 16,
+    padding: theme.spacing.lg,
   },
   sectionTitle: {
-    ...typography.h1,
-    marginVertical: 16,
-    color: colors.text,
+    marginBottom: theme.spacing.xl,
   },
   cardsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    marginBottom: theme.spacing.xl,
   },
   card: {
     width: '48%',
-    backgroundColor: colors.primary,
-    borderRadius: 8,
-    padding: 16,
-    marginBottom: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  cardTitle: {
-    ...typography.h2,
-    color: colors.background,
-    textAlign: 'center',
+    marginBottom: theme.spacing.md,
   },
   createButton: {
-    backgroundColor: colors.secondary,
-    padding: 16,
-    borderRadius: 8,
-    marginTop: 16,
-    alignItems: 'center',
-  },
-  createButtonText: {
-    ...typography.h2,
-    color: colors.background,
+    marginTop: theme.spacing.md,
   },
 });
 

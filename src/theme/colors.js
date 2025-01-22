@@ -1,0 +1,62 @@
+export const colors = {
+  primary: {
+    main: '#FFA500',
+    light: '#FFB733',
+    dark: '#CC8400',
+    contrast: '#FFFFFF',
+  },
+  secondary: {
+    main: '#FAE8BD',
+    light: '#FBF0D6',
+    dark: '#F7E0A4',
+    contrast: '#000000',
+  },
+  background: {
+    default: '#FFFFFF',
+    paper: '#FFFFFF',
+    gradient: ['#FAE8BD', '#FFFFFF'],
+  },
+  text: {
+    primary: '#000000',
+    secondary: '#666666',
+    disabled: '#9E9E9E',
+    hint: '#BDBDBD',
+  },
+  error: {
+    main: '#FF3B30',
+    light: '#FF6B64',
+    dark: '#CC2F26',
+    contrast: '#FFFFFF',
+  },
+  warning: {
+    main: '#FF9500',
+    light: '#FFAA33',
+    dark: '#CC7700',
+    contrast: '#FFFFFF',
+  },
+  info: {
+    main: '#007AFF',
+    light: '#3395FF',
+    dark: '#0062CC',
+    contrast: '#FFFFFF',
+  },
+  success: {
+    main: '#34C759',
+    light: '#5DD27A',
+    dark: '#2A9F47',
+    contrast: '#FFFFFF',
+  },
+  grey: {
+    50: '#FAFAFA',
+    100: '#F5F5F5',
+    200: '#EEEEEE',
+    300: '#E0E0E0',
+    400: '#BDBDBD',
+    500: '#9E9E9E',
+    600: '#757575',
+    700: '#616161',
+    800: '#424242',
+    900: '#212121',
+  },
+  divider: 'rgba(0, 0, 0, 0.12)',
+};
