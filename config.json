@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "environment": "production",
+  "api": {
+    "baseUrl": "https://api.civino.app",
+    "timeout": 30000
+  },
+  "features": {
+    "imageEvaluation": true,
+    "behavioralContracts": true,
+    "progressReports": true
+  },
+  "theme": {
+    "primaryColor": "#4A90E2",
+    "secondaryColor": "#F5A623",
+    "fontFamily": "PlusJakartaSans"
+  },
+  "security": {
+    "tokenExpiration": 86400,
+    "maxLoginAttempts": 5
+  }
+}
