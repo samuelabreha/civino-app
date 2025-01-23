@@ -1,147 +1,191 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, FlatList } from 'react-native';
-import { icons } from '../../constants/assets';
+import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 import { typography } from '../../styles/theme';
 
+// Langues suisses en premier avec le drapeau suisse
 const languages = [
-  { id: 'fr', name: 'Français', flag: '🇫🇷' },
-  { id: 'en', name: 'English', flag: '🇬🇧' },
-  { id: 'es', name: 'Español', flag: '🇪🇸' },
-  { id: 'de', name: 'Deutsch', flag: '🇩🇪' },
-  { id: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { id: 'fr-CH', name: 'FR', fullName: 'Suisse Romand', flag: '🇨🇭' },
+  { id: 'de-CH', name: 'DE', fullName: 'Schweizerdeutsch', flag: '🇨🇭' },
+  { id: 'it-CH', name: 'IT', fullName: 'Svizzero Italiano', flag: '🇨🇭' },
+  { id: 'rm-CH', name: 'RM', fullName: 'Rumantsch', flag: '🇨🇭' },
+  { id: 'fr', name: 'FR', fullName: 'Français', flag: '🇫🇷' },
+  { id: 'en', name: 'EN', fullName: 'English', flag: '🇬🇧' },
+  { id: 'de', name: 'DE', fullName: 'Deutsch', flag: '🇩🇪' },
+  { id: 'it', name: 'IT', fullName: 'Italiano', flag: '🇮🇹' },
+  { id: 'es', name: 'ES', fullName: 'Español', flag: '🇪🇸' },
+  { id: 'pt', name: 'PT', fullName: 'Português', flag: '🇵🇹' },
+  { id: 'ar', name: 'AR', fullName: 'العربية', flag: '🇸🇦' },
+  { id: 'fa', name: 'FA', fullName: 'فارسی', flag: '🇮🇷' }
 ];
 
-const LanguageSettings = ({ navigation }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState('fr');
+const LanguageSelector = () => {
+  // Définir le suisse-romand comme langue par défaut
+  const [selectedLanguage, setSelectedLanguage] = useState('fr-CH');
+  const [modalVisible, setModalVisible] = useState(false);
+  
+  const currentLanguage = languages.find(lang => lang.id === selectedLanguage);
 
-  const renderLanguageItem = ({ item }) => (
+  const renderLanguageOption = (lang) => (
     <TouchableOpacity
+      key={lang.id}
       style={[
-        styles.languageItem,
-        selectedLanguage === item.id && styles.selectedLanguage,
+        styles.languageOption,
+        selectedLanguage === lang.id && styles.selectedOption,
+        // Mettre en évidence les langues suisses
+        lang.id.endsWith('-CH') && styles.swissOption
       ]}
-      onPress={() => setSelectedLanguage(item.id)}
+      onPress={() => {
+        setSelectedLanguage(lang.id);
+        setModalVisible(false);
+      }}
     >
-      <View style={styles.languageInfo}>
-        <Text style={styles.languageFlag}>{item.flag}</Text>
-        <Text style={styles.languageName}>{item.name}</Text>
-      </View>
-      {selectedLanguage === item.id && (
-        <Image 
-          source={icons.general.checklistRectangle} 
-          style={styles.checkIcon} 
-        />
-      )}
+      <Text style={styles.flag}>{lang.flag}</Text>
+      <Text style={[
+        styles.languageName,
+        lang.id.endsWith('-CH') && styles.swissText
+      ]}>{lang.fullName}</Text>
+      <Text style={styles.languageCode}>{lang.name}</Text>
     </TouchableOpacity>
   );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Image source={icons.general.arrowBack} style={styles.backIcon} />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Langue</Text>
-      </View>
-
-      <Text style={styles.description}>
-        Sélectionnez votre langue préférée pour l'application
-      </Text>
-
-      <FlatList
-        data={languages}
-        renderItem={renderLanguageItem}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.languageList}
-      />
-
+    <>
       <TouchableOpacity
-        style={styles.saveButton}
-        onPress={() => navigation.goBack()}
+        style={styles.switchLanguage}
+        onPress={() => setModalVisible(true)}
       >
-        <Text style={styles.saveButtonText}>Enregistrer</Text>
+        <View style={styles.content}>
+          <Text style={styles.flag}>{currentLanguage.flag}</Text>
+          <Text style={styles.languageCode}>{currentLanguage.name}</Text>
+        </View>
+        <View style={styles.arrowDown} />
       </TouchableOpacity>
-    </View>
+
+      <Modal
+        visible={modalVisible}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <TouchableOpacity
+          style={styles.modalOverlay}
+          activeOpacity={1}
+          onPress={() => setModalVisible(false)}
+        >
+          <View style={styles.modalContent}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalTitle}>Choisir la langue</Text>
+            </View>
+            
+            {/* Section Suisse */}
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Suisse 🇨🇭</Text>
+              {languages.filter(lang => lang.id.endsWith('-CH')).map(renderLanguageOption)}
+            </View>
+            
+            {/* Autres langues */}
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Autres langues</Text>
+              {languages.filter(lang => !lang.id.endsWith('-CH')).map(renderLanguageOption)}
+            </View>
+          </View>
+        </TouchableOpacity>
+      </Modal>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
-  },
-  header: {
+  switchLanguage: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#FFF',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 20,
+    padding: 8,
+    paddingHorizontal: 12,
+  },
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  flag: {
+    fontSize: 22, 
+    width: 32,
+    height: 32,
+    textAlign: 'center',
+    lineHeight: 32,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 16, 
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.1)', 
+  },
+  languageCode: {
+    ...typography.button,
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  arrowDown: {
+    width: 20,
+    height: 20,
+    marginLeft: 4,
+    borderColor: '#FFFFFF',
+    borderWidth: 2,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    transform: [{ rotate: '45deg' }, { translateY: -4 }],
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    width: '80%',
+    maxHeight: '80%',
+  },
+  modalHeader: {
     borderBottomWidth: 1,
     borderBottomColor: '#E0E0E0',
-  },
-  backButton: {
-    padding: 8,
-    marginRight: 12,
-  },
-  backIcon: {
-    width: 24,
-    height: 24,
-    tintColor: '#2196F3',
-  },
-  headerTitle: {
-    ...typography.h6,
-  },
-  description: {
-    ...typography.body1,
-    color: '#757575',
-    padding: 20,
-  },
-  languageList: {
-    padding: 20,
-  },
-  languageItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#FFF',
     padding: 16,
-    borderRadius: 8,
+  },
+  modalTitle: {
+    ...typography.h6,
+    textAlign: 'center',
+  },
+  section: {
+    padding: 16,
+  },
+  sectionTitle: {
+    ...typography.subtitle1,
+    color: '#666',
     marginBottom: 8,
   },
-  selectedLanguage: {
-    backgroundColor: '#E3F2FD',
-    borderColor: '#2196F3',
-    borderWidth: 1,
-  },
-  languageInfo: {
+  languageOption: {
     flexDirection: 'row',
     alignItems: 'center',
+    padding: 12,
+    borderRadius: 8,
+    gap: 12,
   },
-  languageFlag: {
-    fontSize: 24,
-    marginRight: 12,
+  selectedOption: {
+    backgroundColor: '#F5F5F5',
+  },
+  swissOption: {
+    backgroundColor: 'rgba(255, 0, 0, 0.05)',
   },
   languageName: {
     ...typography.body1,
+    flex: 1,
   },
-  checkIcon: {
-    width: 20,
-    height: 20,
-    tintColor: '#2196F3',
-  },
-  saveButton: {
-    backgroundColor: '#2196F3',
-    margin: 20,
-    padding: 16,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  saveButtonText: {
-    ...typography.button,
-    color: '#FFF',
-  },
+  swissText: {
+    fontWeight: '600',
+  }
 });
 
-export default LanguageSettings;
+export default LanguageSelector;

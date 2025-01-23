@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
-  Text,
-  TouchableOpacity,
   ScrollView,
-  TextInput,
-  Switch,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ScreenWrapper } from '../../components/common/ScreenWrapper';
+import { colors } from '../../theme/colors';
+import { typography } from '../../theme/typography';
+import LinearGradient from 'react-native-linear-gradient';
+import CustomInput from '../../components/common/CustomInput';
 
 const CreateContactScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -22,335 +23,191 @@ const CreateContactScreen = ({ navigation }) => {
     organization: '',
     department: '',
     notes: '',
+    isActive: true,
   });
 
-  const [availability, setAvailability] = useState({
-    monday: { active: false, start: '09:00', end: '17:00' },
-    tuesday: { active: false, start: '09:00', end: '17:00' },
-    wednesday: { active: false, start: '09:00', end: '17:00' },
-    thursday: { active: false, start: '09:00', end: '17:00' },
-    friday: { active: false, start: '09:00', end: '17:00' },
-  });
-
-  const roles = [
-    { id: 'teacher', title: t('contacts.role.teacher'), icon: 'school' },
-    { id: 'referent', title: t('contacts.role.referent'), icon: 'account-tie' },
-    { id: 'monitor', title: t('contacts.role.monitor'), icon: 'account-supervisor' },
-  ];
-
-  const handleInputChange = (field, value) => {
-    setFormData({
-      ...formData,
-      [field]: value,
-    });
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleAvailabilityChange = (day, field, value) => {
-    setAvailability({
-      ...availability,
-      [day]: {
-        ...availability[day],
-        [field]: value,
-      },
-    });
-  };
-
-  const handleCreate = () => {
+  const handleSave = () => {
     // Implement contact creation logic
     navigation.goBack();
   };
 
-  const isFormValid = () => {
-    return (
-      formData.name &&
-      formData.role &&
-      formData.email &&
-      formData.phone
-    );
-  };
-
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.content}>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{t('contacts.basicInfo')}</Text>
-          <TextInput
-            style={styles.input}
-            placeholder={t('contacts.namePlaceholder')}
-            value={formData.name}
-            onChangeText={(value) => handleInputChange('name', value)}
-          />
-
-          <Text style={styles.fieldLabel}>{t('contacts.selectRole')}</Text>
-          <View style={styles.rolesContainer}>
-            {roles.map((role) => (
-              <TouchableOpacity
-                key={role.id}
-                style={[
-                  styles.roleButton,
-                  formData.role === role.id && styles.selectedRole,
-                ]}
-                onPress={() => handleInputChange('role', role.id)}
-              >
-                <Icon
-                  name={role.icon}
-                  size={24}
-                  color={formData.role === role.id ? '#FFFFFF' : '#666'}
-                />
-                <Text
-                  style={[
-                    styles.roleText,
-                    formData.role === role.id && styles.selectedRoleText,
-                  ]}
-                >
-                  {role.title}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+    <ScreenWrapper>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.header}>
+          <Text style={styles.title}>{t('contacts.create.title')}</Text>
+          <Text style={styles.subtitle}>{t('contacts.create.subtitle')}</Text>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{t('contacts.contactInfo')}</Text>
-          <TextInput
-            style={styles.input}
-            placeholder={t('contacts.emailPlaceholder')}
+        <LinearGradient
+          colors={colors.background.gradient.primary}
+          style={styles.formContainer}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 1 }}
+        >
+          <CustomInput
+            label={t('contacts.form.name')}
+            value={formData.name}
+            onChangeText={(value) => handleChange('name', value)}
+            placeholder={t('contacts.form.namePlaceholder')}
+            icon="account"
+          />
+
+          <CustomInput
+            label={t('contacts.form.role')}
+            value={formData.role}
+            onChangeText={(value) => handleChange('role', value)}
+            placeholder={t('contacts.form.rolePlaceholder')}
+            icon="briefcase"
+          />
+
+          <CustomInput
+            label={t('contacts.form.email')}
             value={formData.email}
-            onChangeText={(value) => handleInputChange('email', value)}
+            onChangeText={(value) => handleChange('email', value)}
+            placeholder={t('contacts.form.emailPlaceholder')}
+            icon="email"
             keyboardType="email-address"
           />
-          <TextInput
-            style={styles.input}
-            placeholder={t('contacts.phonePlaceholder')}
+
+          <CustomInput
+            label={t('contacts.form.phone')}
             value={formData.phone}
-            onChangeText={(value) => handleInputChange('phone', value)}
+            onChangeText={(value) => handleChange('phone', value)}
+            placeholder={t('contacts.form.phonePlaceholder')}
+            icon="phone"
             keyboardType="phone-pad"
           />
-          <TextInput
-            style={styles.input}
-            placeholder={t('contacts.addressPlaceholder')}
+
+          <CustomInput
+            label={t('contacts.form.address')}
             value={formData.address}
-            onChangeText={(value) => handleInputChange('address', value)}
+            onChangeText={(value) => handleChange('address', value)}
+            placeholder={t('contacts.form.addressPlaceholder')}
+            icon="map-marker"
             multiline
           />
-        </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{t('contacts.professional')}</Text>
-          <TextInput
-            style={styles.input}
-            placeholder={t('contacts.organizationPlaceholder')}
+          <CustomInput
+            label={t('contacts.form.organization')}
             value={formData.organization}
-            onChangeText={(value) => handleInputChange('organization', value)}
+            onChangeText={(value) => handleChange('organization', value)}
+            placeholder={t('contacts.form.organizationPlaceholder')}
+            icon="office-building"
           />
-          <TextInput
-            style={styles.input}
-            placeholder={t('contacts.departmentPlaceholder')}
+
+          <CustomInput
+            label={t('contacts.form.department')}
             value={formData.department}
-            onChangeText={(value) => handleInputChange('department', value)}
+            onChangeText={(value) => handleChange('department', value)}
+            placeholder={t('contacts.form.departmentPlaceholder')}
+            icon="briefcase"
           />
-        </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{t('contacts.availability')}</Text>
-          {Object.entries(availability).map(([day, schedule]) => (
-            <View key={day} style={styles.scheduleRow}>
-              <View style={styles.scheduleDay}>
-                <Switch
-                  value={schedule.active}
-                  onValueChange={(value) =>
-                    handleAvailabilityChange(day, 'active', value)
-                  }
-                />
-                <Text style={styles.dayText}>
-                  {t(`contacts.days.${day}`)}
-                </Text>
-              </View>
-              {schedule.active && (
-                <View style={styles.timeInputs}>
-                  <TextInput
-                    style={styles.timeInput}
-                    value={schedule.start}
-                    onChangeText={(value) =>
-                      handleAvailabilityChange(day, 'start', value)
-                    }
-                    placeholder="09:00"
-                  />
-                  <Text style={styles.timeSeparator}>-</Text>
-                  <TextInput
-                    style={styles.timeInput}
-                    value={schedule.end}
-                    onChangeText={(value) =>
-                      handleAvailabilityChange(day, 'end', value)
-                    }
-                    placeholder="17:00"
-                  />
-                </View>
-              )}
-            </View>
-          ))}
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{t('contacts.notes')}</Text>
-          <TextInput
-            style={[styles.input, styles.notesInput]}
-            placeholder={t('contacts.notesPlaceholder')}
+          <CustomInput
+            label={t('contacts.form.notes')}
             value={formData.notes}
-            onChangeText={(value) => handleInputChange('notes', value)}
+            onChangeText={(value) => handleChange('notes', value)}
+            placeholder={t('contacts.form.notesPlaceholder')}
+            icon="note-text"
             multiline
-            numberOfLines={4}
           />
+
+          <View style={styles.switchContainer}>
+            <Text style={styles.switchLabel}>{t('contacts.form.isActive')}</Text>
+            <Switch
+              value={formData.isActive}
+              onValueChange={(value) => handleChange('isActive', value)}
+              trackColor={{ false: colors.text.disabled, true: colors.secondary.main }}
+              thumbColor={formData.isActive ? colors.primary.main : colors.background.paper}
+            />
+          </View>
+        </LinearGradient>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[styles.button, styles.cancelButton]}
+            onPress={() => navigation.goBack()}
+          >
+            <Text style={styles.buttonTextCancel}>{t('common.cancel')}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.button, styles.saveButton]}
+            onPress={handleSave}
+          >
+            <Text style={styles.buttonTextSave}>{t('common.save')}</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
-
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={styles.cancelButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Text style={styles.cancelButtonText}>{t('common.cancel')}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.createButton, !isFormValid() && styles.disabledButton]}
-          onPress={handleCreate}
-          disabled={!isFormValid()}
-        >
-          <Text style={styles.createButtonText}>{t('common.create')}</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </ScreenWrapper>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-  content: {
+  scrollView: {
     flex: 1,
   },
-  section: {
+  header: {
+    marginBottom: 24,
+  },
+  title: {
+    ...typography.styles.h1,
+    color: colors.text.primary,
+    marginBottom: 8,
+  },
+  subtitle: {
+    ...typography.styles.body1,
+    color: colors.text.secondary,
+  },
+  formContainer: {
+    borderRadius: 16,
     padding: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
+    marginBottom: 24,
+    ...colors.shadows.medium,
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
-    marginBottom: 15,
+  switchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 16,
   },
-  fieldLabel: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 10,
+  switchLabel: {
+    ...typography.styles.body1,
+    color: colors.text.primary,
   },
-  input: {
-    backgroundColor: '#F5F5F5',
-    borderRadius: 10,
-    padding: 15,
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  notesInput: {
-    height: 100,
-    textAlignVertical: 'top',
-  },
-  rolesContainer: {
+  buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
+    marginBottom: 24,
   },
-  roleButton: {
+  button: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
+    height: 48,
+    borderRadius: 12,
     justifyContent: 'center',
-    backgroundColor: '#F5F5F5',
-    padding: 15,
-    borderRadius: 10,
-    marginHorizontal: 5,
-  },
-  selectedRole: {
-    backgroundColor: '#2196F3',
-  },
-  roleText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#666',
-    marginLeft: 5,
-  },
-  selectedRoleText: {
-    color: '#FFFFFF',
-  },
-  scheduleRow: {
-    flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 15,
-  },
-  scheduleDay: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: 120,
-  },
-  dayText: {
-    fontSize: 16,
-    color: '#333',
-    marginLeft: 10,
-  },
-  timeInputs: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
-  timeInput: {
-    backgroundColor: '#F5F5F5',
-    borderRadius: 10,
-    padding: 10,
-    width: 80,
-    textAlign: 'center',
-  },
-  timeSeparator: {
-    marginHorizontal: 10,
-    fontSize: 16,
-    color: '#666',
-  },
-  footer: {
-    flexDirection: 'row',
-    padding: 20,
-    borderTopWidth: 1,
-    borderTopColor: '#E0E0E0',
+    marginHorizontal: 8,
   },
   cancelButton: {
-    flex: 1,
-    padding: 15,
-    borderRadius: 10,
-    backgroundColor: '#F5F5F5',
-    marginRight: 10,
-    alignItems: 'center',
+    backgroundColor: colors.background.paper,
+    borderWidth: 1,
+    borderColor: colors.primary.main,
   },
-  cancelButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#666',
+  saveButton: {
+    backgroundColor: colors.primary.main,
   },
-  createButton: {
-    flex: 1,
-    padding: 15,
-    borderRadius: 10,
-    backgroundColor: '#2196F3',
-    alignItems: 'center',
+  buttonTextCancel: {
+    ...typography.styles.button,
+    color: colors.primary.main,
   },
-  createButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#FFFFFF',
-  },
-  disabledButton: {
-    backgroundColor: '#E0E0E0',
+  buttonTextSave: {
+    ...typography.styles.button,
+    color: colors.background.paper,
   },
 });
 

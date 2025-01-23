@@ -1,6 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { ScreenWrapper } from '../../../components/common/ScreenWrapper';
+import { colors } from '../../../theme/colors';
+import { typography } from '../../../theme/typography';
+import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ProfileCreationScreen = ({ navigation }) => {
@@ -8,111 +12,122 @@ const ProfileCreationScreen = ({ navigation }) => {
 
   const steps = [
     {
-      title: t('profileCreation.status'),
-      icon: 'account-question',
+      title: t('profileCreation.status.title'),
+      description: t('profileCreation.status.description'),
       screen: 'StatusInput',
     },
     {
-      title: t('profileCreation.lastName'),
-      icon: 'card-text',
+      title: t('profileCreation.lastName.title'),
+      description: t('profileCreation.lastName.description'),
       screen: 'NameInput',
     },
     {
-      title: t('profileCreation.firstName'),
-      icon: 'card-text-outline',
+      title: t('profileCreation.firstName.title'),
+      description: t('profileCreation.firstName.description'),
       screen: 'FirstNameInput',
     },
     {
-      title: t('profileCreation.behaviorContracts'),
-      icon: 'file-document',
+      title: t('profileCreation.behaviorContracts.title'),
+      description: t('profileCreation.behaviorContracts.description'),
       screen: 'BehaviorContracts',
     },
     {
-      title: t('profileCreation.questionnaires'),
-      icon: 'clipboard-text',
+      title: t('profileCreation.questionnaires.title'),
+      description: t('profileCreation.questionnaires.description'),
       screen: 'Questionnaires',
     },
   ];
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{t('profileCreation.title')}</Text>
-        <Text style={styles.subtitle}>{t('profileCreation.subtitle')}</Text>
-      </View>
+    <ScreenWrapper>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.header}>
+          <Text style={styles.title}>{t('profileCreation.title')}</Text>
+          <Text style={styles.subtitle}>{t('profileCreation.subtitle')}</Text>
+        </View>
 
-      <View style={styles.stepsContainer}>
-        {steps.map((step, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.stepItem}
-            onPress={() => navigation.navigate(step.screen)}
-          >
-            <View style={styles.stepNumber}>
-              <Text style={styles.stepNumberText}>{index + 1}</Text>
-            </View>
-            <Icon name={step.icon} size={30} color="#2196F3" />
-            <Text style={styles.stepText}>{step.title}</Text>
-            <Icon name="chevron-right" size={24} color="#666" />
-          </TouchableOpacity>
-        ))}
-      </View>
-    </ScrollView>
+        <LinearGradient
+          colors={colors.background.gradient.primary}
+          style={styles.stepsContainer}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 1 }}
+        >
+          {steps.map((step, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.stepCard}
+              onPress={() => navigation.navigate(step.screen)}
+            >
+              <View style={styles.stepNumber}>
+                <Text style={styles.stepNumberText}>{index + 1}</Text>
+              </View>
+              <View style={styles.stepContent}>
+                <Text style={styles.stepTitle}>{step.title}</Text>
+                <Text style={styles.stepDescription}>{step.description}</Text>
+              </View>
+              <Icon name="chevron-right" size={24} color={colors.text.secondary} />
+            </TouchableOpacity>
+          ))}
+        </LinearGradient>
+      </ScrollView>
+    </ScreenWrapper>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  scrollView: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
   },
   header: {
-    padding: 20,
-    backgroundColor: '#F5F5F5',
+    marginBottom: 24,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    ...typography.styles.h1,
+    color: colors.text.primary,
+    marginBottom: 8,
   },
   subtitle: {
-    fontSize: 16,
-    color: '#666',
+    ...typography.styles.body1,
+    color: colors.text.secondary,
   },
   stepsContainer: {
+    borderRadius: 16,
     padding: 20,
+    marginBottom: 24,
   },
-  stepItem: {
+  stepCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-    marginBottom: 15,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    backgroundColor: colors.background.paper,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
   },
   stepNumber: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    backgroundColor: '#2196F3',
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: colors.primary.main,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 15,
+    marginRight: 12,
   },
   stepNumberText: {
-    color: '#FFFFFF',
+    ...typography.styles.body2,
+    color: colors.background.paper,
     fontWeight: 'bold',
   },
-  stepText: {
+  stepContent: {
     flex: 1,
-    fontSize: 16,
-    marginLeft: 15,
-    color: '#333',
+  },
+  stepTitle: {
+    ...typography.styles.h3,
+    color: colors.text.primary,
+    marginBottom: 4,
+  },
+  stepDescription: {
+    ...typography.styles.body2,
+    color: colors.text.secondary,
   },
 });
 

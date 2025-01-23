@@ -8,20 +8,77 @@ export const ROUTES = {
   // Main Stack
   MAIN: 'Main',
   HOME: 'Home',
-  CHILD: 'Child',
-  COMMUNITY: 'Community',
-  CONTRACT: 'Contract',
-  REFERENCE: 'Reference',
-  SCHOOL: 'School',
-  SETTINGS: 'Settings',
-  TEACHER: 'Teacher',
+  
+  // Profile Creation
+  PROFILE_CREATION: 'ProfileCreation',
+  STATUS_INPUT: 'StatusInput',
+  NAME_INPUT: 'NameInput',
+  FIRSTNAME_INPUT: 'FirstnameInput',
+  BEHAVIOR_CONTRACTS: 'BehaviorContracts',
+  QUESTIONNAIRES: 'Questionnaires',
+  PROGRESS_REPORT: 'ProgressReport',
 
-  // Nested Stacks
-  CHILD_DETAILS: 'ChildDetails',
-  COMMUNITY_DETAILS: 'CommunityDetails',
-  CONTRACT_DETAILS: 'ContractDetails',
-  SCHOOL_DETAILS: 'SchoolDetails',
-  TEACHER_DETAILS: 'TeacherDetails',
+  // Profile Selection
+  PROFILE_SELECTION: 'ProfileSelection',
+  CHILD_PROFILE: 'ChildProfile',
+  TEACHER_PROFILE: 'TeacherProfile',
+  FINC_MONITOR_PROFILE: 'FincMonitorProfile',
+  PARENT_PROFILE: 'ParentProfile',
+  ADMIN_PROFILE: 'AdminProfile',
+
+  // Referent Animator
+  REFERENT_ANIMATOR: 'ReferentAnimator',
+  QUESTIONNAIRE: 'Questionnaire',
+  IMAGE_EVALUATION: 'ImageEvaluation',
+  BEHAVIORAL_STATS: 'BehavioralStats',
+  OVERVIEW: 'Overview',
+
+  // Child Section
+  CHILD: 'Child',
+  BEHAVIOR_CONTRACTS: 'BehaviorContracts',
+  DAILY_QUESTIONNAIRE: 'DailyQuestionnaire',
+  CHILD_PROGRESS: 'ChildProgress',
+  CHILD_STATS: 'ChildStats',
+  CHILD_OVERVIEW: 'ChildOverview',
+
+  // Teacher Section
+  TEACHER: 'Teacher',
+  TEACHER_QUESTIONNAIRE: 'TeacherQuestionnaire',
+  TEACHER_EVALUATION: 'TeacherEvaluation',
+  TEACHER_PROGRESS: 'TeacherProgress',
+  TEACHER_STATS: 'TeacherStats',
+  TEACHER_OVERVIEW: 'TeacherOverview',
+
+  // FINC Monitor
+  FINC_MONITOR: 'FincMonitor',
+  MONITOR_QUESTIONNAIRE: 'MonitorQuestionnaire',
+  MONITOR_EVALUATION: 'MonitorEvaluation',
+  MONITOR_PROGRESS: 'MonitorProgress',
+  MONITOR_STATS: 'MonitorStats',
+  MONITOR_OVERVIEW: 'MonitorOverview',
+
+  // Documents
+  DOCUMENTS: 'Documents',
+  DOCUMENT_UPLOAD: 'DocumentUpload',
+  DOCUMENT_CALENDAR: 'DocumentCalendar',
+  OBSERVATION_REPORTS: 'ObservationReports',
+  WEEKLY_OBSERVATIONS: 'WeeklyObservations',
+  MONTHLY_OBSERVATIONS: 'MonthlyObservations',
+  MONTHLY_SUMMARY: 'MonthlySummary',
+  IMPROVEMENT_POINTS: 'ImprovementPoints',
+  DOCUMENTATION: 'Documentation',
+
+  // Contacts
+  CONTACTS: 'Contacts',
+  CONTACT_LIST: 'ContactList',
+  ADD_CONTACT: 'AddContact',
+  DELETE_CONTACT: 'DeleteContact',
+
+  // Settings
+  SETTINGS: 'Settings',
+  LANGUAGE_SELECTION: 'LanguageSelection',
+  NOTIFICATIONS: 'Notifications',
+  ACCOUNT_MANAGEMENT: 'AccountManagement',
 };
 
 export const SCREEN_OPTIONS = {

@@ -1,86 +1,103 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {
+  ScreenWrapper,
+  Card,
+  List,
+  ListItem,
+  Button,
+  Row,
+} from '../../components/common';
+import { sharedStyles } from '../../theme/sharedStyles';
+import { useSelector } from 'react-redux';
 
-const HomeScreen = ({ navigation }) => {
+export const HomeScreen = ({ navigation }) => {
   const { t } = useTranslation();
+  const user = useSelector((state) => state.auth.user);
 
   const menuItems = [
     {
-      title: t('home.createProfile'),
-      icon: 'account-plus',
-      onPress: () => navigation.navigate('ProfileCreation'),
+      id: 'profile',
+      title: t('home.menu.profile'),
+      onPress: () => navigation.navigate('Profile'),
     },
     {
-      title: t('home.selectProfile'),
-      icon: 'account-switch',
-      onPress: () => navigation.navigate('ProfileSelection'),
+      id: 'contacts',
+      title: t('home.menu.contacts'),
+      onPress: () => navigation.navigate('Contacts'),
+    },
+    {
+      id: 'documents',
+      title: t('home.menu.documents'),
+      onPress: () => navigation.navigate('Documents'),
+    },
+    {
+      id: 'calendar',
+      title: t('home.menu.calendar'),
+      onPress: () => navigation.navigate('Calendar'),
     },
   ];
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{t('home.welcome')}</Text>
-        <Text style={styles.subtitle}>{t('home.selectOption')}</Text>
-      </View>
+    <ScreenWrapper>
+      <ScrollView
+        style={sharedStyles.scrollView}
+        contentContainerStyle={sharedStyles.contentContainer}
+      >
+        <View style={sharedStyles.header}>
+          <Text style={sharedStyles.title}>
+            {t('home.welcome', { name: user?.firstName })}
+          </Text>
+          <Text style={sharedStyles.subtitle}>{t('home.subtitle')}</Text>
+        </View>
 
-      <View style={styles.menuContainer}>
-        {menuItems.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.menuItem}
-            onPress={item.onPress}
-          >
-            <Icon name={item.icon} size={40} color="#2196F3" />
-            <Text style={styles.menuItemText}>{item.title}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-    </ScrollView>
+        <Card gradient>
+          <Text style={[sharedStyles.h2, sharedStyles.mb16]}>
+            {t('home.quickActions')}
+          </Text>
+          <Row style={sharedStyles.gap16}>
+            <Button
+              title={t('home.actions.newContact')}
+              variant="secondary"
+              onPress={() => navigation.navigate('CreateContact')}
+              style={{ flex: 1 }}
+            />
+            <Button
+              title={t('home.actions.newDocument')}
+              variant="secondary"
+              onPress={() => navigation.navigate('CreateDocument')}
+              style={{ flex: 1 }}
+            />
+          </Row>
+        </Card>
+
+        <List>
+          {menuItems.map((item, index) => (
+            <ListItem
+              key={item.id}
+              isLast={index === menuItems.length - 1}
+              onPress={item.onPress}
+            >
+              <Text style={sharedStyles.body1}>{item.title}</Text>
+            </ListItem>
+          ))}
+        </List>
+
+        <Card>
+          <Text style={[sharedStyles.h2, sharedStyles.mb16]}>
+            {t('home.recentActivity')}
+          </Text>
+          <List>
+            {/* Activité récente à implémenter */}
+            <ListItem>
+              <Text style={sharedStyles.body2}>
+                {t('home.noRecentActivity')}
+              </Text>
+            </ListItem>
+          </List>
+        </Card>
+      </ScrollView>
+    </ScreenWrapper>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-  header: {
-    padding: 20,
-    backgroundColor: '#F5F5F5',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-  },
-  menuContainer: {
-    padding: 20,
-  },
-  menuItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-    marginBottom: 15,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-  },
-  menuItemText: {
-    marginLeft: 15,
-    fontSize: 18,
-    color: '#333',
-  },
-});
-
-export default HomeScreen;
