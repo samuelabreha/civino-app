@@ -1,3 +1,4 @@
+import { configureStore } from '@reduxjs/toolkit';
 import contractReducer, {
   fetchContracts,
   fetchContractById,
@@ -15,6 +16,12 @@ const initialState = {
   loading: false,
   error: null,
 };
+
+const store = configureStore({
+  reducer: {
+    contract: contractReducer,
+  },
+});
 
 describe('contractSlice', () => {
   it('should handle initial state', () => {

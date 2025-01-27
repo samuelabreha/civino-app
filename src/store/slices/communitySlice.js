@@ -86,11 +86,10 @@ const communitySlice = createSlice({
       .addCase(fetchEvents.fulfilled, (state, action) => {
         state.loading = false;
         state.events = action.payload;
-        state.error = null;
       })
       .addCase(fetchEvents.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error?.message || 'Failed to fetch events';
       })
       // Fetch event by id
       .addCase(fetchEventById.pending, (state) => {
@@ -100,11 +99,10 @@ const communitySlice = createSlice({
       .addCase(fetchEventById.fulfilled, (state, action) => {
         state.loading = false;
         state.selectedEvent = action.payload;
-        state.error = null;
       })
       .addCase(fetchEventById.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error?.message || 'Failed to fetch event';
       })
       // Create event
       .addCase(createEvent.pending, (state) => {
@@ -114,11 +112,10 @@ const communitySlice = createSlice({
       .addCase(createEvent.fulfilled, (state, action) => {
         state.loading = false;
         state.events.push(action.payload);
-        state.error = null;
       })
       .addCase(createEvent.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error?.message || 'Failed to create event';
       })
       // Update event
       .addCase(updateEvent.pending, (state) => {
@@ -134,11 +131,10 @@ const communitySlice = createSlice({
         if (state.selectedEvent?.id === action.payload.id) {
           state.selectedEvent = action.payload;
         }
-        state.error = null;
       })
       .addCase(updateEvent.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error?.message || 'Failed to update event';
       })
       // Delete event
       .addCase(deleteEvent.pending, (state) => {
@@ -151,11 +147,10 @@ const communitySlice = createSlice({
         if (state.selectedEvent?.id === action.payload) {
           state.selectedEvent = null;
         }
-        state.error = null;
       })
       .addCase(deleteEvent.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error?.message || 'Failed to delete event';
       });
   }
 });

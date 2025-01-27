@@ -5,6 +5,13 @@ import schoolReducer, {
   updateSchool,
   deleteSchool,
 } from '../schoolSlice';
+import { configureStore } from '@reduxjs/toolkit';
+
+const store = configureStore({
+  reducer: {
+    school: schoolReducer,
+  },
+});
 
 describe('schoolSlice', () => {
   const initialState = {

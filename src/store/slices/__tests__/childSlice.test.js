@@ -6,6 +6,7 @@ import childReducer, {
   updateChild,
   deleteChild
 } from '../childSlice';
+import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
   children: [],
@@ -13,6 +14,12 @@ const initialState = {
   loading: false,
   error: null
 };
+
+const store = configureStore({
+  reducer: {
+    child: childReducer,
+  },
+});
 
 describe('childSlice', () => {
   it('should handle initial state', () => {

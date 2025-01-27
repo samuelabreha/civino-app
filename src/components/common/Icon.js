@@ -19,19 +19,18 @@ const Icon = ({
     return theme.colors[color]?.main || color;
   };
 
-  const iconStyles = [
+  const combinedStyles = StyleSheet.flatten([
     styles.container,
     variant !== 'default' && styles[variant],
     style,
-  ];
+  ]);
 
   return (
-    <View style={iconStyles}>
+    <View style={combinedStyles}>
       <MaterialCommunityIcons
         name={name}
         size={size}
         color={getColor()}
-        style={styles.icon}
         {...props}
       />
     </View>
@@ -42,9 +41,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  icon: {
-    textAlign: 'center',
   },
   circular: {
     borderRadius: 9999,

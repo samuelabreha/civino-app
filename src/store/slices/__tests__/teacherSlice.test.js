@@ -6,6 +6,7 @@ import teacherReducer, {
   deleteTeacher,
   setSelectedTeacher
 } from '../teacherSlice';
+import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
   teachers: [],
@@ -14,6 +15,12 @@ const initialState = {
   loading: false,
   error: null
 };
+
+const store = configureStore({
+  reducer: {
+    teacher: teacherReducer,
+  },
+});
 
 describe('teacherSlice', () => {
   it('should handle initial state', () => {

@@ -89,7 +89,6 @@ const contractSlice = createSlice({
       .addCase(fetchContracts.fulfilled, (state, action) => {
         state.loading = false;
         state.contracts = action.payload;
-        state.error = null;
       })
       .addCase(fetchContracts.rejected, (state, action) => {
         state.loading = false;
@@ -103,7 +102,6 @@ const contractSlice = createSlice({
       .addCase(fetchContractById.fulfilled, (state, action) => {
         state.loading = false;
         state.selectedContract = action.payload;
-        state.error = null;
       })
       .addCase(fetchContractById.rejected, (state, action) => {
         state.loading = false;
@@ -117,11 +115,10 @@ const contractSlice = createSlice({
       .addCase(createContract.fulfilled, (state, action) => {
         state.loading = false;
         state.contracts.push(action.payload);
-        state.error = null;
       })
       .addCase(createContract.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error?.message || 'Failed to create contract';
       })
       // Update contract
       .addCase(updateContract.pending, (state) => {
@@ -137,11 +134,10 @@ const contractSlice = createSlice({
         if (state.selectedContract?.id === action.payload.id) {
           state.selectedContract = action.payload;
         }
-        state.error = null;
       })
       .addCase(updateContract.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error?.message || 'Failed to update contract';
       })
       // Delete contract
       .addCase(deleteContract.pending, (state) => {
@@ -154,11 +150,10 @@ const contractSlice = createSlice({
         if (state.selectedContract?.id === action.payload) {
           state.selectedContract = null;
         }
-        state.error = null;
       })
       .addCase(deleteContract.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error?.message || 'Failed to delete contract';
       });
   }
 });

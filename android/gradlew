@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+# gradlew - the Gradle wrapper script
+
+# Set the default JVM options
+DEFAULT_JVM_OPTS="-Xmx1536m -XX:MaxPermSize=512m"
+
+# Set the Gradle home directory
+GRADLE_HOME="$(dirname "$0")/gradle"
+
+# Execute Gradle with the appropriate options
+exec "$GRADLE_HOME/bin/gradle" "$@"

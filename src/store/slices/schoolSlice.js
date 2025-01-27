@@ -15,7 +15,7 @@ export const fetchSchools = createAsyncThunk(
       const response = await schoolApi.getSchools();
       return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to fetch schools');
+      return rejectWithValue(error.message || 'Failed to fetch schools');
     }
   }
 );
@@ -27,7 +27,7 @@ export const fetchSchoolById = createAsyncThunk(
       const response = await schoolApi.getSchoolById(id);
       return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to fetch school');
+      return rejectWithValue(error.message || 'Failed to fetch school');
     }
   }
 );
@@ -39,7 +39,7 @@ export const createSchool = createAsyncThunk(
       const response = await schoolApi.createSchool(schoolData);
       return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to create school');
+      return rejectWithValue(error.message || 'Failed to create school');
     }
   }
 );
@@ -51,7 +51,7 @@ export const updateSchool = createAsyncThunk(
       const response = await schoolApi.updateSchool(id, data);
       return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to update school');
+      return rejectWithValue(error.message || 'Failed to update school');
     }
   }
 );
@@ -63,7 +63,7 @@ export const deleteSchool = createAsyncThunk(
       await schoolApi.deleteSchool(id);
       return id;
     } catch (error) {
-      return rejectWithValue('Failed to delete school');
+      return rejectWithValue(error.message || 'Failed to delete school');
     }
   }
 );
@@ -86,11 +86,10 @@ const schoolSlice = createSlice({
       .addCase(fetchSchools.fulfilled, (state, action) => {
         state.loading = false;
         state.schools = action.payload;
-        state.error = null;
       })
       .addCase(fetchSchools.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to fetch schools';
       })
       // Fetch school by id
       .addCase(fetchSchoolById.pending, (state) => {
@@ -100,11 +99,10 @@ const schoolSlice = createSlice({
       .addCase(fetchSchoolById.fulfilled, (state, action) => {
         state.loading = false;
         state.selectedSchool = action.payload;
-        state.error = null;
       })
       .addCase(fetchSchoolById.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to fetch school';
       })
       // Create school
       .addCase(createSchool.pending, (state) => {
@@ -114,11 +112,10 @@ const schoolSlice = createSlice({
       .addCase(createSchool.fulfilled, (state, action) => {
         state.loading = false;
         state.schools.push(action.payload);
-        state.error = null;
       })
       .addCase(createSchool.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to create school';
       })
       // Update school
       .addCase(updateSchool.pending, (state) => {
@@ -131,14 +128,10 @@ const schoolSlice = createSlice({
         if (index !== -1) {
           state.schools[index] = action.payload;
         }
-        if (state.selectedSchool?.id === action.payload.id) {
-          state.selectedSchool = action.payload;
-        }
-        state.error = null;
       })
       .addCase(updateSchool.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to update school';
       })
       // Delete school
       .addCase(deleteSchool.pending, (state) => {
@@ -148,14 +141,10 @@ const schoolSlice = createSlice({
       .addCase(deleteSchool.fulfilled, (state, action) => {
         state.loading = false;
         state.schools = state.schools.filter(school => school.id !== action.payload);
-        if (state.selectedSchool?.id === action.payload) {
-          state.selectedSchool = null;
-        }
-        state.error = null;
       })
       .addCase(deleteSchool.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to delete school';
       });
   }
 });

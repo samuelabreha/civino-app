@@ -7,6 +7,7 @@ const Avatar = ({
   name,
   size = 'medium',
   variant = 'circular',
+  testID,
   style,
   ...props
 }) => {
@@ -31,7 +32,6 @@ const Avatar = ({
     styles.container,
     styles[variant],
     { width: avatarSize, height: avatarSize },
-    style,
   ];
 
   const textStyles = [
@@ -41,8 +41,10 @@ const Avatar = ({
     },
   ];
 
+  const combinedStyles = StyleSheet.flatten([...avatarStyles, style]);
+
   return (
-    <View style={avatarStyles} {...props}>
+    <View testID={testID} style={combinedStyles} {...props}>
       {source ? (
         <Image
           source={typeof source === 'string' ? { uri: source } : source}
@@ -57,7 +59,7 @@ const Avatar = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.colors.grey[300],
+    backgroundColor: theme.colors.grey && theme.colors.grey[300] ? theme.colors.grey[300] : '#ccc',
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
     borderRadius: 9999,
   },
   rounded: {
-    borderRadius: theme.shape.borderRadius.lg,
+    borderRadius: theme.shape && theme.shape.borderRadius && theme.shape.borderRadius.lg ? theme.shape.borderRadius.lg : 4,
   },
   square: {
     borderRadius: 0,
@@ -77,9 +79,12 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   text: {
-    color: theme.colors.text.primary,
-    fontWeight: theme.typography.fontWeights.medium,
-    fontFamily: theme.typography.fontFamily.primary,
+    color: theme.colors && theme.colors.text && theme.colors.text.primary ? theme.colors.text.primary : '#333',
+    fontWeight: theme.typography && theme.typography.fontWeights && theme.typography.fontWeights.medium ? theme.typography.fontWeights.medium : '500',
+    fontFamily: theme.typography && theme.typography.fontFamily && theme.typography.fontFamily.primary ? theme.typography.fontFamily.primary : 'Arial',
+  },
+  avatar: {
+    // Add styles for avatar here if needed
   },
 });
 

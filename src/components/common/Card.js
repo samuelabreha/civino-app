@@ -8,12 +8,13 @@ const Card = ({
   variant = 'elevated',
   padding = 'medium',
   style,
+  testID, 
   ...props
 }) => {
   const Component = onPress ? TouchableOpacity : View;
   
   const cardStyles = [
-    styles.base,
+    styles.card,
     styles[variant],
     styles[`padding${padding.charAt(0).toUpperCase()}${padding.slice(1)}`],
     style,
@@ -21,6 +22,7 @@ const Card = ({
 
   return (
     <Component
+      testID={testID}
       style={cardStyles}
       onPress={onPress}
       activeOpacity={onPress ? 0.7 : 1}
@@ -32,9 +34,9 @@ const Card = ({
 };
 
 const styles = StyleSheet.create({
-  base: {
+  card: {
     backgroundColor: theme.colors.background.paper,
-    borderRadius: theme.shape.borderRadius.md,
+    borderRadius: theme.shape.borderRadius.sm,
     overflow: 'hidden',
   },
 

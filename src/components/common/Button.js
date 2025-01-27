@@ -12,6 +12,7 @@ const Button = ({
   disabled = false,
   style,
   textStyle,
+  ...props
 }) => {
   const buttonStyles = [
     styles.button,
@@ -19,7 +20,6 @@ const Button = ({
     variant === 'secondary' && styles.buttonSecondary,
     variant === 'outline' && styles.buttonOutline,
     disabled && styles.buttonDisabled,
-    style,
   ];
 
   const textStyles = [
@@ -27,6 +27,8 @@ const Button = ({
     variant === 'outline' && styles.textOutline,
     textStyle,
   ];
+
+  const combinedStyles = StyleSheet.flatten([...buttonStyles, style]);
 
   if (variant === 'gradient') {
     return (
@@ -37,7 +39,7 @@ const Button = ({
       >
         <LinearGradient
           colors={colors.background.gradient.primary}
-          style={[styles.button, style]}
+          style={combinedStyles}
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
         >
@@ -51,16 +53,27 @@ const Button = ({
     );
   }
 
+  const buttonProps = { onPress, disabled: disabled || loading, style: combinedStyles, ...props };
+
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      disabled={disabled || loading}
-      style={buttonStyles}
-    >
+    <TouchableOpacity {...buttonProps}>
       {loading ? (
         <ActivityIndicator color={variant === 'outline' ? colors.primary.main : colors.background.paper} />
       ) : (
         <Text style={textStyles}>{title}</Text>
+      )}
+    </TouchableOpacity>
+  );
+};
+
+const ButtonSimple = ({ loading, title, variant, style, ...props }) => {
+  const combinedStyles = StyleSheet.flatten([styles.button, style]);
+  return (
+    <TouchableOpacity style={combinedStyles} {...props}>
+      {loading ? (
+        <ActivityIndicator color={variant === 'outline' ? colors.primary.main : colors.background.paper} />
+      ) : (
+        <Text style={styles.text}>{title}</Text>
       )}
     </TouchableOpacity>
   );
@@ -95,3 +108,4 @@ const styles = StyleSheet.create({
 });
 
 export default Button;
+export { ButtonSimple };

@@ -25,6 +25,18 @@ export const colors = {
       secondary: ['#fae8bd', '#ffffff'],
     },
   },
+  grey: {
+    50: '#fafafa',
+    100: '#f5f5f5',
+    200: '#e0e0e0',
+    300: '#bdbdbd',
+    400: '#9e9e9e',
+    500: '#757575',
+    600: '#616161',
+    700: '#424242',
+    800: '#212121',
+    900: '#000000',
+  },
   highlight: '#ffd775',
   divider: 'rgba(0, 0, 0, 0.12)',
   error: {

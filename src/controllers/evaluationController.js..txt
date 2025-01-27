@@ -1,0 +1,46 @@
+import { createEvaluation, getUserEvaluations, updateEvaluation, deleteEvaluation } from '../services/evaluationService';
+
+// Fonction pour créer une évaluation
+export const createEvaluationController = async (req, res) => {
+    try {
+        const evaluationData = req.body;
+        const evaluation = await createEvaluation(evaluationData);
+        res.status(201).json(evaluation);
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur lors de la création de l’évaluation', error });
+    }
+};
+
+// Fonction pour récupérer les évaluations d'un utilisateur
+export const getUserEvaluationsController = async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const evaluations = await getUserEvaluations(userId);
+        res.status(200).json(evaluations);
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur lors de la récupération des évaluations', error });
+    }
+};
+
+// Fonction pour mettre à jour une évaluation
+export const updateEvaluationController = async (req, res) => {
+    const evaluationId = req.params.evaluationId;
+    const evaluationData = req.body;
+    try {
+        const updatedEvaluation = await updateEvaluation(evaluationId, evaluationData);
+        res.status(200).json(updatedEvaluation);
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur lors de la mise à jour de l’évaluation', error });
+    }
+};
+
+// Fonction pour supprimer une évaluation
+export const deleteEvaluationController = async (req, res) => {
+    const evaluationId = req.params.evaluationId;
+    try {
+        await deleteEvaluation(evaluationId);
+        res.status(204).send();
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur lors de la suppression de l’évaluation', error });
+    }
+};

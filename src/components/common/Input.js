@@ -18,6 +18,7 @@ const Input = ({
   inputStyle,
   disabled = false,
   required = false,
+  testID, // Ajout de testID
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -62,7 +63,7 @@ const Input = ({
   };
 
   return (
-    <View style={[styles.container, style]}>
+    <View testID={testID} style={[styles.container, style]} {...props}> // Utilisation de testID
       <Animated.Text style={[styles.label, labelStyle]}>
         {label}
         {required && <Text style={styles.required}> *</Text>}

@@ -1,0 +1,21 @@
+// Module de collaboration entre utilisateurs
+
+class Collaboration {
+    constructor() {
+        this.documents = [];
+    }
+
+    // Méthode pour partager un document
+    shareDocument(document) {
+        this.documents.push(document);
+        console.log(`Document partagé: ${document.title}`);
+    }
+
+    // Méthode pour récupérer les documents partagés
+    getSharedDocuments() {
+        return this.documents;
+    }
+}
+
+// Exporter le module
+export default new Collaboration();

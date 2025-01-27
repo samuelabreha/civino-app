@@ -8,6 +8,13 @@ import referenceReducer, {
   downloadResource,
   clearError,
 } from '../referenceSlice';
+import { configureStore } from '@reduxjs/toolkit';
+
+const store = configureStore({
+  reducer: {
+    reference: referenceReducer,
+  },
+});
 
 describe('referenceSlice', () => {
   const initialState = {

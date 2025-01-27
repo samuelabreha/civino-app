@@ -12,12 +12,11 @@ const Badge = ({
   ...props
 }) => {
   const badgeStyles = [
-    styles.container,
+    styles.badge,
     styles[variant],
     styles[`color${color.charAt(0).toUpperCase()}${color.slice(1)}`],
     styles[size],
     overlap && styles.overlap,
-    style,
   ];
 
   const textStyles = [
@@ -26,15 +25,27 @@ const Badge = ({
     variant === 'outlined' && styles[`textColor${color.charAt(0).toUpperCase()}${color.slice(1)}`],
   ];
 
+  const combinedStyles = StyleSheet.flatten([...badgeStyles, style]);
+  const combinedTextStyles = StyleSheet.flatten(textStyles);
+
   return (
-    <View style={badgeStyles} {...props}>
-      {content && <Text style={textStyles}>{content}</Text>}
+    <View style={combinedStyles} {...props}>
+      {content && <Text style={combinedTextStyles}>{content}</Text>}
+    </View>
+  );
+};
+
+const BadgeSimple = ({ content, style, ...props }) => {
+  const combinedStyles = StyleSheet.flatten([styles.badge, style]);
+  return (
+    <View style={combinedStyles} {...props}>
+      <Text>{content}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  badge: {
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -144,4 +155,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Badge;
+export { Badge, BadgeSimple };

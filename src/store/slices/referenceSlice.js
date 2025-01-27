@@ -16,7 +16,7 @@ export const fetchResources = createAsyncThunk(
       const response = await referenceApi.getResources();
       return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to fetch resources');
+      return rejectWithValue(error.message || 'Failed to fetch resources');
     }
   }
 );
@@ -28,7 +28,7 @@ export const fetchResourceById = createAsyncThunk(
       const response = await referenceApi.getResourceById(id);
       return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to fetch resource');
+      return rejectWithValue(error.message || 'Failed to fetch resource');
     }
   }
 );
@@ -40,7 +40,7 @@ export const createResource = createAsyncThunk(
       const response = await referenceApi.createResource(resourceData);
       return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to create resource');
+      return rejectWithValue(error.message || 'Failed to create resource');
     }
   }
 );
@@ -52,7 +52,7 @@ export const updateResource = createAsyncThunk(
       const response = await referenceApi.updateResource(id, data);
       return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to update resource');
+      return rejectWithValue(error.message || 'Failed to update resource');
     }
   }
 );
@@ -64,7 +64,7 @@ export const deleteResource = createAsyncThunk(
       await referenceApi.deleteResource(id);
       return id;
     } catch (error) {
-      return rejectWithValue('Failed to delete resource');
+      return rejectWithValue(error.message || 'Failed to delete resource');
     }
   }
 );
@@ -76,7 +76,7 @@ export const searchResources = createAsyncThunk(
       const response = await referenceApi.searchResources(query);
       return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to search resources');
+      return rejectWithValue(error.message || 'Failed to search resources');
     }
   }
 );
@@ -88,7 +88,7 @@ export const downloadResource = createAsyncThunk(
       const response = await referenceApi.downloadResource(id);
       return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to download resource');
+      return rejectWithValue(error.message || 'Failed to download resource');
     }
   }
 );
@@ -111,11 +111,10 @@ const referenceSlice = createSlice({
       .addCase(fetchResources.fulfilled, (state, action) => {
         state.loading = false;
         state.resources = action.payload;
-        state.error = null;
       })
       .addCase(fetchResources.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to fetch resources';
       })
       // Fetch resource by id
       .addCase(fetchResourceById.pending, (state) => {
@@ -125,11 +124,10 @@ const referenceSlice = createSlice({
       .addCase(fetchResourceById.fulfilled, (state, action) => {
         state.loading = false;
         state.selectedResource = action.payload;
-        state.error = null;
       })
       .addCase(fetchResourceById.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to fetch resource';
       })
       // Create resource
       .addCase(createResource.pending, (state) => {
@@ -139,11 +137,10 @@ const referenceSlice = createSlice({
       .addCase(createResource.fulfilled, (state, action) => {
         state.loading = false;
         state.resources.push(action.payload);
-        state.error = null;
       })
       .addCase(createResource.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to create resource';
       })
       // Update resource
       .addCase(updateResource.pending, (state) => {
@@ -159,11 +156,10 @@ const referenceSlice = createSlice({
         if (state.selectedResource?.id === action.payload.id) {
           state.selectedResource = action.payload;
         }
-        state.error = null;
       })
       .addCase(updateResource.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to update resource';
       })
       // Delete resource
       .addCase(deleteResource.pending, (state) => {
@@ -176,11 +172,10 @@ const referenceSlice = createSlice({
         if (state.selectedResource?.id === action.payload) {
           state.selectedResource = null;
         }
-        state.error = null;
       })
       .addCase(deleteResource.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to delete resource';
       })
       // Search resources
       .addCase(searchResources.pending, (state) => {
@@ -190,11 +185,10 @@ const referenceSlice = createSlice({
       .addCase(searchResources.fulfilled, (state, action) => {
         state.loading = false;
         state.searchResults = action.payload;
-        state.error = null;
       })
       .addCase(searchResources.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to search resources';
       })
       // Download resource
       .addCase(downloadResource.pending, (state) => {
@@ -203,11 +197,10 @@ const referenceSlice = createSlice({
       })
       .addCase(downloadResource.fulfilled, (state) => {
         state.loading = false;
-        state.error = null;
       })
       .addCase(downloadResource.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message || 'Failed to download resource';
       });
   }
 });
