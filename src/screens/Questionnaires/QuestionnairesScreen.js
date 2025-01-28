@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
@@ -20,55 +20,27 @@ const QuestionnairesScreen = ({ navigation }) => {
   const userProfile = useSelector(state => state.auth.profile);
 
   const questionnaires = [
-    {
-      id: 'school',
-      title: t('evaluation.school'),
-      description: '30 questions',
-      icon: 'school',
-      color: '#4CAF50',
-    },
-    {
-      id: 'home',
-      title: t('evaluation.home'),
-      description: '9 questions',
-      icon: 'home',
-      color: '#2196F3',
-    },
-    {
-      id: 'neighborhood',
-      title: t('evaluation.neighborhood'),
-      description: '20 questions',
-      icon: 'home-group',
-      color: '#FF9800',
-    },
+    { id: 'school', title: t('evaluation.school'), description: '30 questions', icon: 'school', color: '#4CAF50' },
+    { id: 'home', title: t('evaluation.home'), description: '9 questions', icon: 'home', color: '#2196F3' },
+    { id: 'neighborhood', title: t('evaluation.neighborhood'), description: '20 questions', icon: 'home-group', color: '#FF9800' },
   ];
 
-  const handleQuestionnaireSelection = (questionnaireId) => {
-    navigation.navigate('QuestionnaireDetail', { id: questionnaireId });
-  };
-
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{t('evaluation.daily')}</Text>
-        <Text style={styles.subtitle}>
-          {t('evaluation.selectQuestionnaire')}
-        </Text>
-      </View>
-
-      <View style={styles.questionnairesContainer}>
-        {questionnaires.map((questionnaire) => (
+    <View style={styles.container}>
+      <FlatList
+        data={questionnaires}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
           <QuestionnaireCard
-            key={questionnaire.id}
-            title={questionnaire.title}
-            description={questionnaire.description}
-            icon={questionnaire.icon}
-            color={questionnaire.color}
-            onPress={() => handleQuestionnaireSelection(questionnaire.id)}
+            title={item.title}
+            description={item.description}
+            onPress={() => navigation.navigate(item.id)}
+            icon={item.icon}
+            color={item.color}
           />
-        ))}
-      </View>
-    </ScrollView>
+        )}
+      />
+    </View>
   );
 };
 
@@ -76,23 +48,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-  },
-  header: {
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 20,
-  },
-  questionnairesContainer: {
-    padding: 15,
   },
   card: {
     flexDirection: 'row',

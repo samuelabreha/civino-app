@@ -1,0 +1,92 @@
+[
+    {
+        "question": "Écoutes-tu tes parents ?",
+        "answer": "J’écoute mes parents",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Home_1_Listen_to_your_parents.png"
+    },
+    {
+        "question": "Arrêtes-tu de te disputer avec ton frère ou ta sœur ?",
+        "answer": "J’arrête de me disputer avec mon frère ou ma sœur",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Home_2_Stop_fighting_with_your_sibling.png"
+    },
+    {
+        "question": "Fais-tu ton lit ?",
+        "answer": "Je fais mon lit",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Home_3_Make_your_bed.png"
+    },
+    {
+        "question": "Ranges-tu tes vêtements ?",
+        "answer": "Je range mes vêtements",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Home_4_Put_away_your_pants.png"
+    },
+    {
+        "question": "Ranges-tu tes chaussures à l’entrée ?",
+        "answer": "Je range mes chaussures à l’entrée",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Home_5_Put_your_shoes_away_at_the_entrance.png"
+    },
+    {
+        "question": "Jettes-tu les restes de nourriture à la poubelle ?",
+        "answer": "Je jette les restes de nourriture à la poubelle",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Home_6_Dispose_of_leftover_food_in_the_trash.png"
+    },
+    {
+        "question": "Partages-tu la nourriture et les boissons avec ta famille ?",
+        "answer": "Je partage la nourriture et les boissons avec ma famille",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Home_7_Share_food_and_drinks_with_your_family.png"
+    },
+    {
+        "question": "Ranges-tu tes jouets et tes livres ?",
+        "answer": "Je range mes jouets et mes livres",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Home_8_Do_not_leave_toys_and_books_untidy.png"
+    },
+    {
+        "question": "Maintiens-tu le contact visuel en parlant ?",
+        "answer": "Je maintiens le contact visuel en parlant",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Home_9_Make_eye_contact_with_adults_when_speaking.png"
+    }
+]

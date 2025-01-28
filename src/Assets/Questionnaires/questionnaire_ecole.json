@@ -1,0 +1,142 @@
+[
+    {
+        "question": "Dis-tu bonjour et au revoir ?",
+        "answer": "Je dis bonjour et au revoir",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Respect_1_Say_hello_and_goodbye.png"
+    },
+    {
+        "question": "Utilises-tu des phrases polies (par exemple : 's’il te plaît', 'merci') ?",
+        "answer": "J’utilise des phrases polies ('s’il te plaît', 'merci')",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Respect_2_Use_polite_phrases.png"
+    },
+    {
+        "question": "Partages-tu les jouets et restes-tu patient(e) ?",
+        "answer": "Je partage les jouets et je suis patient(e)",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Respect_3_Share_games_and_be_patient.png"
+    },
+    {
+        "question": "T’excuses-tu après un différend ?",
+        "answer": "Je m’excuse après un différend",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Respect_4_Apologize_after_a_conflict.png"
+    },
+    {
+        "question": "Salue-tu l’enseignant(e) à ton arrivée ?",
+        "answer": "Je salue l’enseignant(e) à mon arrivée",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Respect_5_Greet_the_teacher_upon_arrival.png"
+    },
+    {
+        "question": "Maintiens-tu le contact visuel en parlant ?",
+        "answer": "Je maintiens le contact visuel en parlant",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Respect_6_Make_eye_contact_with_adults_and_classmates_when_speaking.png"
+    },
+    {
+        "question": "Réponds-tu lorsqu’on t’appelle par ton prénom ?",
+        "answer": "Je réponds lorsqu’on m’appelle par mon prénom",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Dialogue_1_Respond_to_your_name_when_called.png"
+    },
+    {
+        "question": "Évites-tu les gestes violents ?",
+        "answer": "J’évite les gestes violents",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Dialogue_2_Avoid_violent_gestures.png"
+    },
+    {
+        "question": "Réagis-tu calmement en cas de conflit ?",
+        "answer": "Je réagis calmement en cas de conflit",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Dialogue_3_React_calmly_during_conflicts.png"
+    },
+    {
+        "question": "Exprimes-tu tes émotions sans agressivité ?",
+        "answer": "J’exprime mes émotions sans agressivité",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Dialogue_4_Express_emotions_without_aggression.png"
+    },
+    {
+        "question": "Lèves-tu la main avant de parler ?",
+        "answer": "Je lève la main avant de parler",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Dialogue_5_Raise_your_hand_before_speaking_in_class.png"
+    },
+    {
+        "question": "Écoutes-tu quand les autres parlent ?",
+        "answer": "J’écoute quand les autres parlent",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Dialogue_6_Listen_attentively_when_others_are_speaking.png"
+    },
+    {
+        "question": "Fais-tu preuve de patience en attendant ton tour ?",
+        "answer": "Je fais preuve de patience en attendant mon tour",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Dialogue_7_Be_patient_while_waiting_your_turn.png"
+    },
+    {
+        "question": "Communiques-tu avec respect avec tes camarades ?",
+        "answer": "Je communique avec respect avec mes camarades",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "School_Dialogue_8_Communicate_respectfully_with_your_classmates.png"
+    }
+]

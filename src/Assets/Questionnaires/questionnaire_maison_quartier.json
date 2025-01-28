@@ -1,0 +1,122 @@
+[
+    {
+        "question": "Dis-tu bonjour et au revoir ?",
+        "answer": "Je dis bonjour et au revoir",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_1_Say_hello_and_goodbye.png"
+    },
+    {
+        "question": "Utilises-tu des phrases polies (par exemple : 's’il te plaît', 'merci') ?",
+        "answer": "J’utilise des phrases polies ('s’il te plaît', 'merci')",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_2_Use_polite_phrases.png"
+    },
+    {
+        "question": "Partages-tu les jouets et restes-tu patient(e) ?",
+        "answer": "Je partage les jouets et je suis patient(e)",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_3_Share_games_and_be_patient.png"
+    },
+    {
+        "question": "T’excuses-tu après un différend ?",
+        "answer": "Je m’excuse après un différend",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_4_Apologize_after_a_conflict.png"
+    },
+    {
+        "question": "Maintiens-tu le contact visuel en parlant ?",
+        "answer": "Je maintiens le contact visuel en parlant",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_5_Make_eye_contact_when_speaking.png"
+    },
+    {
+        "question": "Réponds-tu lorsqu’on t’appelle par ton prénom ?",
+        "answer": "Je réponds lorsqu’on m’appelle par mon prénom",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_6_Respond_to_your_name_when_called.png"
+    },
+    {
+        "question": "Évites-tu les gestes violents ?",
+        "answer": "J’évite les gestes violents",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_7_Avoid_violent_gestures.png"
+    },
+    {
+        "question": "Réagis-tu calmement en cas de conflit ?",
+        "answer": "Je réagis calmement en cas de conflit",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_8_React_calmly_during_conflicts.png"
+    },
+    {
+        "question": "Exprimes-tu tes émotions sans agressivité ?",
+        "answer": "J’exprime mes émotions sans agressivité",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_9_Express_emotions_without_aggression.png"
+    },
+    {
+        "question": "Établis-tu un contact visuel avant de répondre ?",
+        "answer": "J’établis un contact visuel avant de répondre",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_10_Make_eye_contact_before_responding.png"
+    },
+    {
+        "question": "Te laves-tu les mains avant les repas et après être allé(e) aux toilettes ?",
+        "answer": "Je me lave les mains avant les repas et après être allé(e) aux toilettes",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_11_Wash_hands_before_meals_and_after_using_the_restroom.png"
+    },
+    {
+        "question": "Ranges-tu les jouets et tes affaires ?",
+        "answer": "Je range les jouets et mes affaires",
+        "evaluation": {
+            "Rouge": "FF4545",
+            "Orange": "FFB923",
+            "Vert": "18CD7F"
+        },
+        "image": "Community_Center_12_Tidy_up_toys_and_personal_belongings.png"
+    }
+]
