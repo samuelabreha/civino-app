@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import './src/i18n/i18n';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import AppNavigator from './src/navigation/AppNavigator';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { store, persistor } from './src/redux/store'; 
 import Home from './src/screens/Home';
 import CreateProfile from './src/screens/CreateProfile';
@@ -41,53 +41,55 @@ import ObservationReports from './src/screens/ObservationReports';
 import Contacts from './src/screens/Contacts';
 import Settings from './src/screens/Settings';
 
+const Stack = createStackNavigator();
+
 const App = () => {
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <SafeAreaProvider>
-            <Router>
-              <Switch>
-                <Route path='/' exact component={Home} />
-                <Route path='/create-profile' component={CreateProfile} />
-                <Route path='/status-entry' component={StatusEntry} />
-                <Route path='/name-entry' component={NameEntry} />
-                <Route path='/behavior-contracts' component={BehaviorContracts} />
-                <Route path='/questionnaires' component={Questionnaires} />
-                <Route path='/image-evaluation' component={ImageEvaluation} />
-                <Route path='/school' component={School} />
-                <Route path='/community-center' component={CommunityCenter} />
-                <Route path='/home' component={HomePage} />
-                <Route path='/profile-selection' component={ProfileSelection} />
-                <Route path='/child-profile' component={ChildProfile} />
-                <Route path='/teacher-profile' component={TeacherProfile} />
-                <Route path='/finc-monitor-profile' component={FincMonitorProfile} />
-                <Route path='/parent-profile' component={ParentProfile} />
-                <Route path='/admin-profile' component={AdminProfile} />
-                <Route path='/referent-animator' component={ReferentAnimator} />
-                <Route path='/questionnaire' component={Questionnaire} />
-                <Route path='/select-date' component={SelectDate} />
-                <Route path='/calendar' component={Calendar} />
-                <Route path='/navigation' component={Navigation} />
-                <Route path='/download-report' component={DownloadReport} />
-                <Route path='/progress-report' component={ProgressReport} />
-                <Route path='/behavioral-statistics' component={BehavioralStatistics} />
-                <Route path='/overview' component={Overview} />
-                <Route path='/child' component={Child} />
-                <Route path='/behavior-contracts-school' component={BehaviorContractsSchool} />
-                <Route path='/teacher' component={Teacher} />
-                <Route path='/documents' component={Documents} />
-                <Route path='/upload-delete-documents' component={UploadDeleteDocuments} />
-                <Route path='/observation-reports' component={ObservationReports} />
-                <Route path='/contacts' component={Contacts} />
-                <Route path='/settings' component={Settings} />
-              </Switch>
-            </Router>
-          </SafeAreaProvider>
-        </GestureHandlerRootView>
-      </PersistGate>
-    </Provider>
+    <SafeAreaProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <NavigationContainer>
+              <Stack.Navigator>
+                <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="CreateProfile" component={CreateProfile} />
+                <Stack.Screen name="StatusEntry" component={StatusEntry} />
+                <Stack.Screen name="NameEntry" component={NameEntry} />
+                <Stack.Screen name="BehaviorContracts" component={BehaviorContracts} />
+                <Stack.Screen name="Questionnaires" component={Questionnaires} />
+                <Stack.Screen name="ImageEvaluation" component={ImageEvaluation} />
+                <Stack.Screen name="School" component={School} />
+                <Stack.Screen name="CommunityCenter" component={CommunityCenter} />
+                <Stack.Screen name="HomePage" component={HomePage} />
+                <Stack.Screen name="ProfileSelection" component={ProfileSelection} />
+                <Stack.Screen name="ChildProfile" component={ChildProfile} />
+                <Stack.Screen name="TeacherProfile" component={TeacherProfile} />
+                <Stack.Screen name="FincMonitorProfile" component={FincMonitorProfile} />
+                <Stack.Screen name="ParentProfile" component={ParentProfile} />
+                <Stack.Screen name="AdminProfile" component={AdminProfile} />
+                <Stack.Screen name="ReferentAnimator" component={ReferentAnimator} />
+                <Stack.Screen name="Questionnaire" component={Questionnaire} />
+                <Stack.Screen name="SelectDate" component={SelectDate} />
+                <Stack.Screen name="Calendar" component={Calendar} />
+                <Stack.Screen name="Navigation" component={Navigation} />
+                <Stack.Screen name="DownloadReport" component={DownloadReport} />
+                <Stack.Screen name="ProgressReport" component={ProgressReport} />
+                <Stack.Screen name="BehavioralStatistics" component={BehavioralStatistics} />
+                <Stack.Screen name="Overview" component={Overview} />
+                <Stack.Screen name="Child" component={Child} />
+                <Stack.Screen name="BehaviorContractsSchool" component={BehaviorContractsSchool} />
+                <Stack.Screen name="Teacher" component={Teacher} />
+                <Stack.Screen name="Documents" component={Documents} />
+                <Stack.Screen name="UploadDeleteDocuments" component={UploadDeleteDocuments} />
+                <Stack.Screen name="ObservationReports" component={ObservationReports} />
+                <Stack.Screen name="Contacts" component={Contacts} />
+                <Stack.Screen name="Settings" component={Settings} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </GestureHandlerRootView>
+        </PersistGate>
+      </Provider>
+    </SafeAreaProvider>
   );
 };
 

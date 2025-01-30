@@ -78,3 +78,5 @@ console.log(weeklyReward);
 
 const overall = calculateOverall(childResponses, adultResponses);
 console.log(overall);
+
+export { calculateMedals, checkWeeklyReward, calculateOverall };
