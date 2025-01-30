@@ -1,0 +1,9 @@
+# Vérification de l'utilisation de React Native
+
+Le projet utilise React Native, comme le montre les exemples suivants :
+
+1. **tsconfig.json** : La configuration JSX est définie sur `react-native`.
+2. **src/services/QuestionnaireService.js** : Importation de `@react-native-firebase/firestore`.
+3. **src/screens/Calendar/CalendarScreen.js** : Importations de `react-native` et `react-native-calendars`.
+
+Ces fichiers démontrent que la conversion en React Native a été effectuée avec succès.
