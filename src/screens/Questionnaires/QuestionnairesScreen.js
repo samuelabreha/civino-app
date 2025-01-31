@@ -3,17 +3,7 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native
 import { useTranslation } from 'react-i18next';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
-
-const QuestionnaireCard = ({ title, description, onPress, icon, color }) => (
-  <TouchableOpacity style={[styles.card, { borderColor: color }]} onPress={onPress}>
-    <Icon name={icon} size={30} color={color} />
-    <View style={styles.cardContent}>
-      <Text style={styles.cardTitle}>{title}</Text>
-      <Text style={styles.cardDescription}>{description}</Text>
-    </View>
-    <Icon name="chevron-right" size={24} color={color} />
-  </TouchableOpacity>
-);
+import QuestionnaireCard from './QuestionnaireCard';
 
 const QuestionnairesScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -25,20 +15,34 @@ const QuestionnairesScreen = ({ navigation }) => {
     { id: 'neighborhood', title: t('evaluation.neighborhood'), description: '20 questions', icon: 'home-group', color: '#FF9800' },
   ];
 
+  const handlePress = (questionnaire) => {
+    // Logique pour naviguer vers le questionnaire
+    navigation.navigate('QuestionnaireDetail', { questionnaire });
+  };
+
+  // Exemple de gestion d'erreur (à adapter selon vos besoins)
+  if (!userProfile) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.errorText}>{t('error.noProfile')}</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
         data={questionnaires}
-        keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <QuestionnaireCard
             title={item.title}
             description={item.description}
-            onPress={() => navigation.navigate(item.id)}
+            onPress={() => handlePress(item)}
             icon={item.icon}
             color={item.color}
           />
         )}
+        keyExtractor={item => item.id}
       />
     </View>
   );
@@ -49,33 +53,33 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
+  errorText: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 18,
+    color: '#666',
+  },
   card: {
+    borderWidth: 1,
+    margin: 10,
+    padding: 10,
+    borderRadius: 8,
+    backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 15,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-    marginBottom: 15,
-    borderWidth: 1,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
   },
   cardContent: {
     flex: 1,
-    marginLeft: 15,
+    marginLeft: 10,
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
+    fontWeight: 'bold',
   },
   cardDescription: {
     fontSize: 14,
     color: '#666',
-    marginTop: 5,
   },
 });
 
